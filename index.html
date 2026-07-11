@@ -6,24 +6,22 @@
     <title>VIVE CASCO | Cero filas. Puro flow.</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Oswald (Títulos fuertes) y Montserrat (Texto moderno y legible) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Iconos de FontAwesome -->
+    <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            /* Paleta VIVE: Urbana, oscura, luces de rumba */
-            --bg-deep: #0a0a0a; /* Negro absoluto */
-            --bg-card: #151515; /* Gris muy oscuro para contraste */
-            --vive-red: #e60000; /* Rojo sangría de Vive */
-            --vive-red-hover: #ff1a1a;
-            --vive-fuchsia: #ff007f; /* Fucsia neón */
-            --text-main: #f3f4f6; /* Blanco roto */
-            --text-muted: #9ca3af; /* Gris claro */
-            --promo-yellow: #ffeb3b; /* Amarillo sticker */
+            /* NUEVA PALETA VIVE: Amarillo Eléctrico y Negro */
+            --bg-deep: #0a0a0a; 
+            --bg-card: #151515; 
+            --vive-yellow: #FFD700; /* Amarillo Vive */
+            --vive-yellow-hover: #ffea00;
+            --text-main: #f3f4f6; 
+            --text-muted: #9ca3af; 
         }
 
         body {
@@ -40,63 +38,116 @@
             letter-spacing: 0.05em;
         }
 
-        /* Estilo Neo-Brutalista (Flyers de Calle) */
-        .street-border {
-            border: 2px solid #2a2a2a;
+        /* Efecto Glitch para Logo */
+        .glitch {
+            position: relative;
+            display: inline-block;
         }
-        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-deep);
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(15px, 9999px, 71px, 0); }
+            20% { clip: rect(66px, 9999px, 11px, 0); }
+            40% { clip: rect(51px, 9999px, 86px, 0); }
+            60% { clip: rect(93px, 9999px, 16px, 0); }
+            80% { clip: rect(10px, 9999px, 69px, 0); }
+            100% { clip: rect(88px, 9999px, 12px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(13px, 9999px, 45px, 0); }
+            40% { clip: rect(87px, 9999px, 20px, 0); }
+            60% { clip: rect(4px, 9999px, 80px, 0); }
+            80% { clip: rect(35px, 9999px, 15px, 0); }
+            100% { clip: rect(90px, 9999px, 50px, 0); }
+        }
+
+        /* Marquesina (Pantalla LED) */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: var(--vive-yellow);
+            color: #000;
+            padding: 8px 0;
+            border-bottom: 2px solid #000;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Estilo Neo-Brutalista / Amarillo */
+        .street-border {
+            border: 2px solid #333;
+        }
         .street-border:hover {
-            border-color: var(--vive-red);
+            border-color: var(--vive-yellow);
+            box-shadow: 6px 6px 0px rgba(255, 215, 0, 0.2);
         }
 
         .btn-urban {
-            background-color: var(--vive-red);
-            color: #fff;
+            background-color: var(--vive-yellow);
+            color: #000;
             font-family: 'Oswald', sans-serif;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             transition: all 0.2s ease-out;
+            box-shadow: 4px 4px 0px #000;
+            border: 1px solid #000;
         }
-        
-        /* Efecto de botón que se hunde ligeramente */
         .btn-urban:hover {
-            background-color: var(--vive-red-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(230, 0, 0, 0.4);
+            background-color: var(--vive-yellow-hover);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000;
         }
-        
         .btn-urban:active {
-            transform: translateY(1px);
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px #000;
         }
 
-        /* Stickers y Badges inclinados */
+        /* Stickers */
         .sticker-badge {
-            background-color: var(--promo-yellow);
+            background-color: #fff;
             color: #000;
             font-family: 'Oswald', sans-serif;
             font-weight: 700;
             padding: 4px 12px;
             transform: rotate(-3deg);
             display: inline-block;
-            box-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+            box-shadow: 2px 2px 0px #000;
         }
-
-        .sticker-badge.red {
-            background-color: var(--vive-red);
-            color: #fff;
+        .sticker-badge.main {
+            background-color: var(--vive-yellow);
             transform: rotate(2deg);
         }
-
-        /* Transiciones rápidas (No tan suaves como un hotel, más rápidas para rumba) */
-        .fast-transition {
-            transition: all 0.2s ease-in-out;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--vive-red); }
 
         /* Navegación Activa */
         .nav-btn {
@@ -112,71 +163,79 @@
             bottom: -6px;
             left: 0;
             width: 0;
-            height: 2px;
-            background-color: var(--vive-red);
+            height: 3px;
+            background-color: var(--vive-yellow);
             transition: width 0.3s ease;
         }
         .nav-btn.active::after, .nav-btn:hover::after {
             width: 100%;
         }
-        .nav-btn.active { color: var(--vive-red); }
+        .nav-btn.active { color: var(--vive-yellow); }
+
+        .fast-transition { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- HEADER / NAVEGACIÓN URBANA -->
-    <header class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-lg border-b border-[#2a2a2a] px-6 py-4 fast-transition">
+    <!-- HEADER URBANO -->
+    <header class="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-lg border-b border-[#2a2a2a] px-6 py-4 fast-transition">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
             
-            <!-- Logo (Simulado de Vive Casco) -->
+            <!-- Logo Glitch -->
             <div class="flex items-center gap-3 lg:items-start cursor-pointer">
-                <!-- Icono V abstracto -->
-                <div class="w-8 h-8 flex items-center justify-center border-2 border-white transform rotate-45 group">
-                    <span class="transform -rotate-45 text-white font-bold title-urban text-lg group-hover:text-red-500 fast-transition">V</span>
+                <div class="w-8 h-8 flex items-center justify-center border-2 border-[var(--vive-yellow)] transform rotate-45 group">
+                    <span class="transform -rotate-45 text-[var(--vive-yellow)] font-bold title-urban text-lg group-hover:text-white fast-transition">V</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="title-urban text-2xl text-white leading-none tracking-wider">VIVE</span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-[#9ca3af]">CASCO VIEJO</span>
+                    <span class="title-urban text-2xl text-white leading-none tracking-wider glitch" data-text="VIVE">VIVE</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-[var(--vive-yellow)]">CASCO VIEJO</span>
                 </div>
             </div>
 
             <!-- Navegación -->
             <nav class="flex flex-wrap justify-center gap-6 md:gap-8 items-center mt-2 lg:mt-0">
-                <button onclick="switchTab('eventos', this)" class="nav-btn active text-white fast-transition">
-                    La Cartelera
+                <button onclick="switchTab('eventos', this)" class="nav-btn active text-white fast-transition">La Cartelera</button>
+                <button id="nav-btn-menu" onclick="switchTab('menu', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">
+                    <i class="fa-solid fa-bottle-droplet mr-1 text-[var(--vive-yellow)]"></i> Pide a la Mesa
                 </button>
-                <button onclick="switchTab('menu', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">
-                    <i class="fa-solid fa-bottle-droplet mr-1 text-xs"></i> Pide a la Mesa
-                </button>
-                <button onclick="switchTab('fidelizacion', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">
-                    VIVE Crew
-                </button>
+                <button onclick="switchTab('fidelizacion', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">VIVE Crew</button>
                 <button onclick="switchTab('tickets', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition flex items-center">
                     Mis Pases
-                    <span id="ticket-badge" class="ml-2 w-2 h-2 rounded-full bg-[var(--vive-red)] hidden"></span>
+                    <span id="ticket-badge" class="ml-2 w-2 h-2 rounded-full bg-[var(--vive-yellow)] hidden animate-pulse"></span>
                 </button>
             </nav>
 
-            <!-- Estatus de Consumo (Flow de Rumba) -->
-            <div class="flex items-center gap-3 bg-[#151515] border border-[#333] px-4 py-2 mt-2 lg:mt-0">
-                <div class="text-right">
-                    <div class="text-[9px] text-[#9ca3af] uppercase font-bold tracking-wider">Tus Puntos</div>
-                    <div class="text-sm font-bold text-white title-urban tracking-wide" id="user-points-display">450 <span class="text-[10px] text-[var(--vive-red)]">PTS</span></div>
-                </div>
-                <div class="w-[1px] h-6 bg-[#333]"></div>
-                <div class="flex items-center justify-center text-[var(--vive-red)]">
-                    <i class="fa-solid fa-fire text-sm"></i>
+            <div class="flex items-center gap-4 mt-2 lg:mt-0">
+                <!-- IG Icon -->
+                <a href="https://www.instagram.com/vive.cascoviejo/" target="_blank" class="text-[#9ca3af] hover:text-[var(--vive-yellow)] text-xl fast-transition">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <!-- Puntos -->
+                <div class="flex items-center gap-3 bg-[#151515] border border-[var(--vive-yellow)] px-4 py-2">
+                    <div class="text-right">
+                        <div class="text-[9px] text-[#9ca3af] uppercase font-bold tracking-wider">Tus Puntos</div>
+                        <div class="text-sm font-bold text-white title-urban tracking-wide" id="user-points-display">450 <span class="text-[10px] text-[var(--vive-yellow)]">PTS</span></div>
+                    </div>
+                    <div class="w-[1px] h-6 bg-[#333]"></div>
+                    <div class="flex items-center justify-center text-[var(--vive-yellow)]">
+                        <i class="fa-solid fa-crown text-sm"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- TOAST NOTIFICATIONS (Estilo Pop-up de juego/app) -->
+    <!-- MARQUESINA (LED TICKER) -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            ⚡ LA RUMBA NO PARA ⚡ OPEN BAR HASTA LAS 2AM ⚡ TODOS GRATIS HASTA 11PM ⚡ PIDE DESDE TU MESA ⚡ VIVE CASCO VIEJO ⚡ LA RUMBA NO PARA ⚡ OPEN BAR HASTA LAS 2AM ⚡ TODOS GRATIS HASTA 11PM ⚡ PIDE DESDE TU MESA ⚡ VIVE CASCO VIEJO ⚡
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
     <div id="system-toast" class="fixed bottom-6 right-6 z-50 pointer-events-none transform translate-y-12 opacity-0 transition-all duration-300">
-        <div class="bg-[#151515] border-l-4 border-[var(--vive-red)] px-5 py-3 shadow-2xl shadow-red-900/20 flex items-center gap-4 max-w-sm">
-            <div id="toast-icon" class="text-[var(--vive-red)] text-lg">
-                <i class="fa-solid fa-bolt"></i>
-            </div>
+        <div class="bg-[#151515] border-l-4 border-[var(--vive-yellow)] px-5 py-3 shadow-2xl flex items-center gap-4 max-w-sm">
+            <div id="toast-icon" class="text-[var(--vive-yellow)] text-lg"><i class="fa-solid fa-bolt"></i></div>
             <div>
                 <p class="text-[10px] font-bold text-[#9ca3af] uppercase tracking-widest title-urban" id="toast-category">Aviso</p>
                 <p class="text-xs text-white mt-0.5 font-medium" id="toast-message">Activando flow...</p>
@@ -187,54 +246,45 @@
     <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto px-6 py-10 w-full flex-grow">
         
-        <!-- PESTAÑA 1: LA CARTELERA (Eventos Reales) -->
+        <!-- PESTAÑA 1: LA CARTELERA -->
         <section id="tab-eventos" class="tab-content block">
             <div class="mb-12 max-w-2xl">
-                <span class="sticker-badge red text-[10px] mb-4">TAQUILLA DIGITAL 100% OFICIAL</span>
+                <span class="sticker-badge main text-[10px] mb-4">LA TAQUILLA DIGITAL OFICIAL</span>
                 <h1 class="title-urban text-4xl md:text-5xl text-white leading-none mb-3 mt-4">
-                    Cero filas.<br><span class="text-[var(--vive-red)]">Puro Flow.</span>
+                    Cero filas.<br><span class="text-[var(--vive-yellow)]">Puro Flow.</span>
                 </h1>
-                <p class="text-[#9ca3af] text-sm md:text-base font-medium">
-                    Asegura tu entrada, saca tu código QR y pide guaro a tu mesa sin tener que empujarte en la barra. Tú controlas el parking.
+                <p class="text-[#9ca3af] text-sm font-medium">
+                    Asegura tu entrada, saca tu QR y pide guaro a tu mesa sin empujones. Tú controlas el parking.
                 </p>
             </div>
 
             <!-- Grid de Eventos -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Evento 1: Kiss Party -->
+                <!-- Evento 1 -->
                 <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
                     <div class="relative h-80 overflow-hidden bg-black">
-                        <!-- Imagen de la Kiss Party -->
                         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
                              style="background-image: url('https://raw.githubusercontent.com/tecnotradepty/cascofrontend/2be6baa9a34de0247727f94055a2ba217acd2f20/vive/504650012_17994989471815319_2796213306670899889_n.jpg');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
-                        
-                        <div class="absolute top-4 left-4 sticker-badge text-[10px]">
-                            TODOS GRATIS HASTA 11PM
-                        </div>
+                        <div class="absolute top-4 left-4 sticker-badge text-[10px]">TODOS GRATIS HASTA 11PM</div>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">SÁB. 5 JULIO</span>
-                            </div>
-                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">KISS PARTY</h3>
+                            <span class="bg-[var(--vive-yellow)] text-black text-[10px] font-bold px-2 py-0.5 mb-2 inline-block">SÁB. 5 JULIO</span>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-yellow)] fast-transition">KISS PARTY</h3>
                             <p class="text-white text-sm font-bold mb-3">Encuentra tu match by Ginosky</p>
                             <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
-                                <p><i class="fa-solid fa-microphone text-[var(--vive-red)] w-4"></i> Show en Tarima</p>
-                                <p><i class="fa-solid fa-martini-glass text-[var(--vive-red)] w-4"></i> Open Bar hasta las 2 AM</p>
+                                <p><i class="fa-solid fa-microphone text-[var(--vive-yellow)] w-4"></i> Show en Tarima</p>
+                                <p><i class="fa-solid fa-martini-glass text-[var(--vive-yellow)] w-4"></i> Open Bar hasta las 2 AM</p>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between items-end border-t border-[#333] pt-4 mb-4">
                                 <div>
-                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Taquilla / Después de 11PM</span>
+                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Taquilla / Post 11PM</span>
                                     <span class="text-xl font-bold text-white title-urban">$15.00</span>
                                 </div>
-                                <div class="text-right">
-                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+30 Ptos</span>
-                                </div>
+                                <span class="text-[10px] text-[var(--vive-yellow)] font-bold block">+30 Ptos</span>
                             </div>
                             <button onclick="openPurchaseModal('KISS PARTY - Ticket Regular', 15.00, 30)" class="w-full btn-urban py-3 text-sm">
                                 Asegurar Pase
@@ -243,43 +293,34 @@
                     </div>
                 </div>
 
-                <!-- Evento 2: Copa del Pecado -->
+                <!-- Evento 2 -->
                 <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
                     <div class="relative h-80 overflow-hidden bg-black">
-                        <!-- Imagen de la Copa del Pecado -->
                         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
                              style="background-image: url('https://raw.githubusercontent.com/tecnotradepty/cascofrontend/2be6baa9a34de0247727f94055a2ba217acd2f20/vive/721601509_18015418985889620_8809329803390516786_n.webp');"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
-                        
-                        <div class="absolute top-4 left-4 sticker-badge red text-[10px]">
-                            CHICAS GRATIS CON QR
-                        </div>
+                        <div class="absolute top-4 left-4 sticker-badge main text-[10px]">CHICAS GRATIS CON QR</div>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">VIE. 12 JUNIO</span>
-                            </div>
-                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">COPA DEL PECADO</h3>
+                            <span class="bg-[var(--vive-yellow)] text-black text-[10px] font-bold px-2 py-0.5 mb-2 inline-block">VIE. 12 JUNIO</span>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-yellow)] fast-transition">COPA DEL PECADO</h3>
                             <p class="text-white text-sm font-bold mb-3">Lo prohibido también tiene campeón.</p>
                             <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
-                                <p><i class="fa-solid fa-headphones text-[var(--vive-red)] w-4"></i> Guest DJ: Junstinnsee</p>
-                                <p><i class="fa-solid fa-glass-water text-[var(--vive-red)] w-4"></i> Open Bar (Ron & Vodka) hasta 3 AM</p>
+                                <p><i class="fa-solid fa-headphones text-[var(--vive-yellow)] w-4"></i> Guest DJ: Junstinnsee</p>
+                                <p><i class="fa-solid fa-glass-water text-[var(--vive-yellow)] w-4"></i> Open Bar hasta 3 AM</p>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between items-end border-t border-[#333] pt-4 mb-4">
                                 <div>
-                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Hombres (Preventa)</span>
+                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Hombres</span>
                                     <span class="text-xl font-bold text-white title-urban">$20.00</span>
                                 </div>
-                                <div class="text-right">
-                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+40 Ptos</span>
-                                </div>
+                                <span class="text-[10px] text-[var(--vive-yellow)] font-bold block">+40 Ptos</span>
                             </div>
-                            <!-- Dos botones para simular acceso QR chicas y pago hombres -->
                             <div class="flex gap-2">
-                                <button onclick="openPurchaseModal('COPA DEL PECADO - QR Chicas (Gratis)', 0.00, 10)" class="w-1/2 bg-[#333] hover:bg-[#444] text-white font-bold font-['Oswald'] uppercase text-xs py-3 fast-transition">
+                                <button onclick="openPurchaseModal('COPA DEL PECADO - QR Chicas (Gratis)', 0.00, 10)" class="w-1/2 bg-[#333] hover:bg-[#444] text-white font-bold font-['Oswald'] uppercase text-xs py-3 border border-transparent">
                                     Sacar QR
                                 </button>
                                 <button onclick="openPurchaseModal('COPA DEL PECADO - Pase Hombres', 20.00, 40)" class="w-1/2 btn-urban py-3 text-xs">
@@ -290,28 +331,22 @@
                     </div>
                 </div>
 
-                <!-- Evento 3: Brazilian Funk -->
+                <!-- Evento 3 (Imagen Corregida) -->
                 <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
-                    <div class="relative h-80 overflow-hidden bg-black">
-                        <!-- Imagen de Brazilian Funk -->
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
-                             style="background-image: url('https://pbs.twimg.com/media/GXH2FlsWsAAI7eW?format=jpg&name=large');"></div> <!-- URL alternativa pública por si el repo bloquea hotlinking -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
-                        
-                        <div class="absolute top-4 left-4 sticker-badge text-[10px] bg-[#00e676]">
-                            WELCOME CAIPIRINHAS
-                        </div>
+                    <div class="relative h-80 overflow-hidden bg-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-60" 
+                             style="background-image: url('https://raw.githubusercontent.com/tecnotradepty/cascofrontend/78b17872f4f16ac8dc6bc1bb4d3bf2886b0e09b7/vive/EventLogo_vive%201.webp'); background-size: contain; background-repeat: no-repeat;"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/20 to-transparent"></div>
+                        <div class="absolute top-4 left-4 sticker-badge text-[10px]">VIVE SESSION</div>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">SÁB. 11 JULIO</span>
-                            </div>
-                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">BRAZILIAN FUNK</h3>
+                            <span class="bg-[var(--vive-yellow)] text-black text-[10px] font-bold px-2 py-0.5 mb-2 inline-block">PRÓXIMAMENTE</span>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-yellow)] fast-transition">BRAZILIAN FUNK</h3>
                             <p class="text-white text-sm font-bold mb-3">Esto solo se vive en VIVE.</p>
                             <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
-                                <p><i class="fa-solid fa-music text-[var(--vive-red)] w-4"></i> LC Deejay en los controles</p>
-                                <p><i class="fa-solid fa-wine-bottle text-[var(--vive-red)] w-4"></i> Open Bar hasta las 2 AM</p>
+                                <p><i class="fa-solid fa-music text-[var(--vive-yellow)] w-4"></i> Especial Funk Carioca</p>
+                                <p><i class="fa-solid fa-wine-bottle text-[var(--vive-yellow)] w-4"></i> Welcome Caipirinhas</p>
                             </div>
                         </div>
                         <div>
@@ -320,9 +355,7 @@
                                     <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Pase General</span>
                                     <span class="text-xl font-bold text-white title-urban">$15.00</span>
                                 </div>
-                                <div class="text-right">
-                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+30 Ptos</span>
-                                </div>
+                                <span class="text-[10px] text-[var(--vive-yellow)] font-bold block">+30 Ptos</span>
                             </div>
                             <button onclick="openPurchaseModal('BRAZILIAN FUNK - Pase General', 15.00, 30)" class="w-full btn-urban py-3 text-sm">
                                 Asegurar Pase
@@ -330,190 +363,174 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- SECCIÓN: LO MÁS PEDIDO EN BARRA -->
+            <div class="mt-20 mb-6 flex items-center gap-4">
+                <h2 class="title-urban text-3xl text-white">Lo más pedido 🔥</h2>
+                <div class="h-[1px] bg-[#333] flex-grow"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Top 1 -->
+                <div class="bg-[#101010] p-4 border border-[#222] hover:border-[var(--vive-yellow)] fast-transition flex items-center gap-4 group">
+                    <div class="bg-[#151515] w-16 h-16 flex items-center justify-center text-[var(--vive-yellow)] text-2xl group-hover:scale-110 fast-transition">
+                        <i class="fa-solid fa-beer-mug-empty"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="title-urban text-lg text-white">Cubetazo Balboa</h4>
+                        <p class="text-[10px] text-[#9ca3af] uppercase">6 Cervezas + Hielo</p>
+                    </div>
+                    <button onclick="document.getElementById('nav-btn-menu').click()" class="text-[var(--vive-yellow)] hover:text-white text-xl p-2">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                </div>
+                <!-- Top 2 -->
+                <div class="bg-[#101010] p-4 border border-[#222] hover:border-[var(--vive-yellow)] fast-transition flex items-center gap-4 group">
+                    <div class="bg-[#151515] w-16 h-16 flex items-center justify-center text-[var(--vive-yellow)] text-2xl group-hover:scale-110 fast-transition">
+                        <i class="fa-solid fa-wine-bottle"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="title-urban text-lg text-white">Seco Herrerano</h4>
+                        <p class="text-[10px] text-[#9ca3af] uppercase">Botella entera</p>
+                    </div>
+                    <button onclick="document.getElementById('nav-btn-menu').click()" class="text-[var(--vive-yellow)] hover:text-white text-xl p-2">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                </div>
+                <!-- Top 3 -->
+                <div class="bg-[#101010] p-4 border border-[#222] hover:border-[var(--vive-yellow)] fast-transition flex items-center gap-4 group">
+                    <div class="bg-[#151515] w-16 h-16 flex items-center justify-center text-[var(--vive-yellow)] text-2xl group-hover:scale-110 fast-transition">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="title-urban text-lg text-white">Shots Fuego</h4>
+                        <p class="text-[10px] text-[#9ca3af] uppercase">Ronda de 4 shots</p>
+                    </div>
+                    <button onclick="document.getElementById('nav-btn-menu').click()" class="text-[var(--vive-yellow)] hover:text-white text-xl p-2">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
-
-        <!-- PESTAÑA 2: MENÚ INTERACTIVO EN MESA (PIDE TU GUARO) -->
+        <!-- PESTAÑA 2: PIDE A LA MESA -->
         <section id="tab-menu" class="tab-content hidden">
-            
-            <!-- GATEKEEPER DE SEGURIDAD (Acceso a Mesa) -->
+            <!-- GATEKEEPER -->
             <div id="menu-gatekeeper" class="max-w-md mx-auto text-center py-10 bg-[#151515] street-border p-8 mt-8">
-                <span class="text-[var(--vive-red)] text-4xl mb-4 block">
+                <span class="text-[var(--vive-yellow)] text-4xl mb-4 block animate-bounce">
                     <i class="fa-solid fa-qrcode"></i>
                 </span>
                 <h2 class="title-urban text-3xl text-white mb-2">Conecta tu Mesa</h2>
-                <p class="text-sm text-[#9ca3af] mb-6 font-medium">
-                    Pon el código de tu mesa pa' pedir las botellas y los cubetazos directo. Cero filas en la barra.
-                </p>
+                <p class="text-sm text-[#9ca3af] mb-6 font-medium">Pon el código de tu mesa pa' pedir directo. Cero filas en la barra.</p>
                 <div class="mb-6">
-                    <input id="table-code-input" type="text" placeholder="Ej: mesa04" class="w-full text-center bg-[#0a0a0a] border-2 border-[#333] px-4 py-4 text-lg focus:outline-none focus:border-[var(--vive-red)] text-white font-bold uppercase mb-2">
-                    <p class="text-[10px] text-[#9ca3af] font-bold">Clave de prueba pa'l demo: <strong class="text-[var(--vive-yellow)] text-white">mesa04</strong></p>
+                    <input id="table-code-input" type="text" placeholder="Ej: mesa04" class="w-full text-center bg-[#0a0a0a] border-2 border-[#333] px-4 py-4 text-lg focus:outline-none focus:border-[var(--vive-yellow)] text-[var(--vive-yellow)] font-bold uppercase mb-2">
+                    <p class="text-[10px] text-[#9ca3af] font-bold">Clave demo: <strong class="text-white">mesa04</strong></p>
                 </div>
-                <button onclick="unlockTableMenu()" class="w-full btn-urban py-4 text-base">
-                    Entrar al Menú
-                </button>
+                <button onclick="unlockTableMenu()" class="w-full btn-urban py-4 text-base">Entrar al Menú</button>
             </div>
 
-            <!-- CONTENIDO DE CARTA ACTIVA -->
+            <!-- CATALOGO ACTIVO -->
             <div id="menu-catalog-container" class="hidden fast-transition">
-                <!-- Header de la Mesa Activa -->
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-4 border-b-2 border-[#2a2a2a]">
                     <div>
-                        <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm mb-2 inline-block">CONECTADO</span>
-                        <h2 class="title-urban text-3xl text-white">Barra Digital <span class="text-[var(--vive-red)]">/</span> <span id="active-table-id">Mesa 04</span></h2>
+                        <span class="bg-[var(--vive-yellow)] text-black text-[10px] font-bold px-2 py-0.5 mb-2 inline-block animate-pulse">EN LÍNEA</span>
+                        <h2 class="title-urban text-3xl text-white">Barra Digital <span class="text-[var(--vive-yellow)]">/</span> <span id="active-table-id">Mesa 04</span></h2>
                     </div>
                     <div class="flex flex-wrap gap-3 w-full md:w-auto">
-                        <!-- Llamado al salonero -->
                         <button onclick="callWaiter()" class="flex-grow md:flex-none bg-[#2a2a2a] hover:bg-[#333] text-white font-bold text-xs px-4 py-3 uppercase fast-transition border border-[#444]">
-                            <i class="fa-solid fa-hand-sparkles text-[var(--promo-yellow)] mr-1"></i> Llamar Mesero
+                            <i class="fa-solid fa-hand-sparkles text-[var(--vive-yellow)] mr-1"></i> Llamar Mesero
                         </button>
-                        <!-- Salir -->
                         <button onclick="lockTableMenu()" class="bg-transparent hover:bg-[#2a2a2a] text-[#9ca3af] border border-[#333] text-xs px-4 py-3 uppercase fast-transition">
                             <i class="fa-solid fa-power-off"></i> Salir
                         </button>
                     </div>
                 </div>
 
-                <!-- Notificación rápida Promo Cashback -->
-                <div class="bg-[var(--vive-red)]/10 border border-[var(--vive-red)] p-4 mb-8 flex items-center justify-between">
+                <!-- Promo Cashback -->
+                <div class="bg-[var(--vive-yellow)]/10 border border-[var(--vive-yellow)] p-4 mb-8 flex items-center justify-between">
                     <p class="text-xs text-white font-bold">
-                        <i class="fa-solid fa-fire text-[var(--vive-red)] mr-2"></i> Pide por aquí y acumula <span class="text-[var(--vive-red)]">10% cashback</span> en puntos Vive pa' la próxima vuelta.
+                        <i class="fa-solid fa-fire text-[var(--vive-yellow)] mr-2"></i> Pide por aquí y acumula <span class="text-[var(--vive-yellow)]">10% cashback</span> en puntos.
                     </p>
                 </div>
 
-                <!-- Grid de Tragos y Botellas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- Producto 1: Botella Seco Herrerano -->
+                    <!-- Producto 1 -->
                     <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Pa' la mesa entera</span>
-                                <span class="text-sm font-bold text-white title-urban">$65.00</span>
+                                <span class="text-sm font-bold text-[var(--vive-yellow)] title-urban">$65.00</span>
                             </div>
-                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Botella Seco Herrerano</h3>
-                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
-                                La clásica de Panamá. Trae hielo, mezcladores y servicio directo a tu spot.
-                            </p>
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-yellow)]">Botella Seco Herrerano</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">La clásica. Trae hielo, mezcladores y servicio al spot.</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
-                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
-                            </span>
-                            <button onclick="orderItemFromTable('Botella Seco Herrerano', 65.00, 30)" class="btn-urban text-[10px] py-2 px-4">
-                                Mandar a Mesa
-                            </button>
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase"><i class="fa-solid fa-check"></i> En Stock</span>
+                            <button onclick="orderItemFromTable('Botella Seco Herrerano', 65.00, 30)" class="btn-urban text-[10px] py-2 px-4">Pedir</button>
                         </div>
                     </div>
-
-                    <!-- Producto 2: Ron Abuelo 12 -->
+                    <!-- Producto 2 -->
                     <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Botella Premium</span>
-                                <span class="text-sm font-bold text-white title-urban">$85.00</span>
+                                <span class="text-sm font-bold text-[var(--vive-yellow)] title-urban">$85.00</span>
                             </div>
-                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Ron Abuelo 12 Años</h3>
-                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
-                                Pa' tomarlo suave. Botella completa con servicio VIP.
-                            </p>
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-yellow)]">Ron Abuelo 12 Años</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">Pa' tomarlo suave. Botella completa.</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
-                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
-                            </span>
-                            <button onclick="orderItemFromTable('Botella Ron Abuelo 12', 85.00, 40)" class="btn-urban text-[10px] py-2 px-4">
-                                Mandar a Mesa
-                            </button>
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase"><i class="fa-solid fa-check"></i> En Stock</span>
+                            <button onclick="orderItemFromTable('Botella Ron Abuelo 12', 85.00, 40)" class="btn-urban text-[10px] py-2 px-4">Pedir</button>
                         </div>
                     </div>
-
-                    <!-- Producto 3: Cubetazo Balboa Ice -->
+                    <!-- Producto 3 -->
                     <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Las Frías</span>
-                                <span class="text-sm font-bold text-white title-urban">$24.00</span>
+                                <span class="text-sm font-bold text-[var(--vive-yellow)] title-urban">$24.00</span>
                             </div>
-                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Cubetazo Balboa Ice (6)</h3>
-                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
-                                Cubeta hasta el tope de hielo con 6 Balboa Ice bien frías pa' refrescar.
-                            </p>
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-yellow)]">Cubetazo Balboa Ice</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">6 pintas bien frías pa' refrescar.</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
-                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
-                            </span>
-                            <button onclick="orderItemFromTable('Cubetazo Balboa Ice', 24.00, 15)" class="btn-urban text-[10px] py-2 px-4">
-                                Mandar a Mesa
-                            </button>
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase"><i class="fa-solid fa-check"></i> En Stock</span>
+                            <button onclick="orderItemFromTable('Cubetazo Balboa', 24.00, 15)" class="btn-urban text-[10px] py-2 px-4">Pedir</button>
                         </div>
                     </div>
-                    
-                    <!-- Producto 4: Agotado (Simulación) -->
-                    <div class="bg-[#151515] street-border p-5 flex flex-col justify-between opacity-50 relative">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none z-10">
-                            <span class="sticker-badge red text-lg">SOLD OUT</span>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="text-[#555] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Promoción</span>
-                                <span class="text-sm font-bold text-[#555] title-urban">$45.00</span>
-                            </div>
-                            <h3 class="title-urban text-xl text-[#888]">Promo Smirnoff + Jugos</h3>
-                            <p class="text-[#555] text-xs font-medium mt-2">Botella de Vodka Smirnoff con cranberry. Se nos acabó temprano.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
-                            <span class="text-[10px] text-[var(--vive-red)] font-bold uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-[var(--vive-red)]"></span> Se acabó
-                            </span>
-                            <button disabled class="bg-[#2a2a2a] text-[#555] font-bold text-[10px] py-2 px-4 uppercase cursor-not-allowed">
-                                Agotado
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- MINI CONSOLA DE PEDIDOS ACTIVOS EN MESA -->
-                <div class="mt-12 bg-[#101010] border-l-4 border-[var(--vive-red)] p-6">
+                <div class="mt-12 bg-[#101010] border-l-4 border-[var(--vive-yellow)] p-6">
                     <h3 class="title-urban text-xl text-white mb-4">Tracking de tus pedidos</h3>
                     <div id="bartender-queue-container" class="space-y-2">
-                        <!-- Pedidos en tiempo real irán aquí -->
                         <div class="flex justify-between items-center bg-[#151515] px-4 py-3 opacity-50 border border-[#333]">
-                            <span class="text-[#9ca3af] font-medium text-sm">No has pedido nada todavía en esta vuelta.</span>
+                            <span class="text-[#9ca3af] font-medium text-sm">No has pedido nada todavía.</span>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
 
-        <!-- PESTAÑA 3: FIDELIZACIÓN (VIVE CREW) -->
+        <!-- PESTAÑA 3: VIVE CREW (FIDELIZACIÓN) -->
         <section id="tab-fidelizacion" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Columna Izquierda: Tarjeta VIVE CREW -->
                 <div class="lg:col-span-5 flex flex-col gap-6">
-                    <div class="bg-[#151515] p-6 street-border relative overflow-hidden flex flex-col justify-between h-72">
-                        <!-- Graphic background -->
-                        <div class="absolute -right-10 -bottom-10 opacity-5 text-9xl title-urban font-bold text-[var(--vive-red)]">V</div>
-                        
+                    <div class="bg-[#151515] p-6 street-border relative overflow-hidden flex flex-col justify-between h-72 group">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl title-urban font-bold text-[var(--vive-yellow)] group-hover:scale-110 fast-transition">V</div>
                         <div class="flex justify-between items-start relative z-10">
                             <div>
-                                <span class="sticker-badge text-[9px] mb-2">VIVE CREW MEMBER</span>
+                                <span class="sticker-badge main text-[9px] mb-2">VIVE CREW MEMBER</span>
                                 <h3 class="title-urban text-2xl text-white">ID: V-PARKER-99</h3>
                             </div>
                         </div>
-
                         <div class="relative z-10">
                             <div class="flex justify-between items-baseline mb-2">
                                 <span class="text-xs text-[#9ca3af] font-bold uppercase">Nivel: <strong class="text-white">Rumbero Frecuente</strong></span>
                             </div>
                             <div class="w-full bg-[#333] h-2 mb-2 rounded-full overflow-hidden">
-                                <div class="bg-[var(--vive-red)] h-full w-[90%] fast-transition"></div>
+                                <div class="bg-[var(--vive-yellow)] h-full w-[90%] fast-transition shadow-[0_0_10px_#FFD700]"></div>
                             </div>
                             <div class="flex justify-between text-[10px] text-[#9ca3af] font-bold">
                                 <span>450 PTS</span>
@@ -521,47 +538,36 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="bg-[var(--vive-fuchsia)] text-black p-6 street-border font-bold text-sm">
-                        <i class="fa-solid fa-bullhorn mb-2 text-xl block"></i>
-                        Tu plata aquí rinde. Cero % a las ticketeras gringas. Lo que pagas, te lo devolvemos en puntos pa' gastar en la barra. De Casco, pa'l Casco.
+                    <div class="bg-white text-black p-6 street-border font-bold text-sm">
+                        <i class="fa-solid fa-bullhorn mb-2 text-xl text-[var(--vive-yellow)] block"></i>
+                        Tu plata rinde más aquí. Lo que gastas en taquilla y guaro se devuelve en puntos. De Casco, pa'l Casco.
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Canjear Puntos -->
                 <div class="lg:col-span-7 flex flex-col gap-6">
                     <div>
                         <h2 class="title-urban text-3xl text-white">Quema tus puntos</h2>
-                        <p class="text-sm text-[#9ca3af] font-medium mt-1">Canjea tus PTS acumulados directo en taquilla o barra.</p>
+                        <p class="text-sm text-[#9ca3af] font-medium mt-1">Canjea tus PTS por beneficios exclusivos.</p>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        
-                        <!-- Promo 1 -->
-                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-red)] fast-transition group">
+                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-yellow)] fast-transition">
                             <div>
-                                <h4 class="title-urban text-lg text-white group-hover:text-[var(--vive-red)]">Fast Pass (Sin Filas)</h4>
-                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Corta la fila en la entrada como un rey. Aplica pa' cualquier evento.</p>
+                                <h4 class="title-urban text-lg text-white">Fast Pass (Sin Filas)</h4>
+                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Corta la fila en la entrada como un rey.</p>
                             </div>
                             <div class="flex justify-between items-center mt-5 pt-3 border-t border-[#2a2a2a]">
-                                <span class="text-sm font-bold text-[var(--promo-yellow)] title-urban">150 PTS</span>
-                                <button onclick="redeemReward('Fast Pass Sin Filas', 150)" class="bg-[#2a2a2a] hover:bg-[var(--vive-red)] text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">
-                                    Canjear Promo
-                                </button>
+                                <span class="text-sm font-bold text-[var(--vive-yellow)] title-urban">150 PTS</span>
+                                <button onclick="redeemReward('Fast Pass', 150)" class="bg-[#2a2a2a] hover:bg-[var(--vive-yellow)] hover:text-black text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">Canjear</button>
                             </div>
                         </div>
-
-                        <!-- Promo 2 -->
-                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-red)] fast-transition group">
+                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-yellow)] fast-transition">
                             <div>
-                                <h4 class="title-urban text-lg text-white group-hover:text-[var(--vive-red)]">2 Shots de Fuego</h4>
-                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Dos chupitos de Seco Fuego en la barra para prender la noche.</p>
+                                <h4 class="title-urban text-lg text-white">2 Shots de Fuego</h4>
+                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Dos chupitos de Seco para prender la noche.</p>
                             </div>
                             <div class="flex justify-between items-center mt-5 pt-3 border-t border-[#2a2a2a]">
-                                <span class="text-sm font-bold text-[var(--promo-yellow)] title-urban">200 PTS</span>
-                                <button onclick="redeemReward('2 Shots de Fuego', 200)" class="bg-[#2a2a2a] hover:bg-[var(--vive-red)] text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">
-                                    Canjear Promo
-                                </button>
+                                <span class="text-sm font-bold text-[var(--vive-yellow)] title-urban">200 PTS</span>
+                                <button onclick="redeemReward('2 Shots Fuego', 200)" class="bg-[#2a2a2a] hover:bg-[var(--vive-yellow)] hover:text-black text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">Canjear</button>
                             </div>
                         </div>
                     </div>
@@ -569,23 +575,18 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 4: MIS PASES (Tickets) -->
+        <!-- PESTAÑA 4: MIS PASES -->
         <section id="tab-tickets" class="tab-content hidden">
             <div class="mb-8">
-                <h2 class="title-urban text-3xl text-white">Tu Billetera de Pases</h2>
-                <p class="text-sm text-[#9ca3af] font-medium mt-1">Muestra este QR en la taquilla, cero impresiones.</p>
+                <h2 class="title-urban text-3xl text-white">Tu Billetera</h2>
+                <p class="text-sm text-[#9ca3af] font-medium mt-1">Muestra este QR en puerta, cero papel.</p>
             </div>
-
-            <!-- Empty State -->
             <div id="no-tickets-message" class="text-center py-20 bg-[#151515] street-border max-w-2xl mx-auto">
                 <div class="text-[#333] text-5xl mb-4"><i class="fa-solid fa-ticket-simple"></i></div>
                 <p class="text-[#9ca3af] font-bold text-sm mb-4">Tas liso de tickets. No hay nada pa' hoy.</p>
-                <button onclick="switchTab('eventos', document.querySelectorAll('.nav-btn')[0])" class="text-[var(--vive-red)] hover:text-white font-bold text-xs uppercase underline">Mira la cartelera</button>
+                <button onclick="document.querySelector('.nav-btn').click()" class="text-[var(--vive-yellow)] hover:text-white font-bold text-xs uppercase underline">Mira la cartelera</button>
             </div>
-
-            <div id="tickets-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Inyectado vía JS -->
-            </div>
+            <div id="tickets-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </section>
     </main>
 
@@ -593,29 +594,32 @@
     <footer class="border-t-2 border-[#2a2a2a] py-8 px-6 bg-[#0a0a0a] mt-12">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div>
-                <span class="title-urban text-xl text-white">VIVE CASCO</span>
+                <span class="title-urban text-xl text-white glitch" data-text="VIVE CASCO">VIVE CASCO</span>
                 <p class="text-xs text-[#9ca3af] font-medium mt-1">La rumba panameña, conectada.</p>
             </div>
-            <div class="text-[10px] font-bold text-[#555] uppercase">
-                CASCO VIEJO • PANAMÁ CITY • 2026
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/vive.cascoviejo/" target="_blank" class="text-[#9ca3af] hover:text-[var(--vive-yellow)] text-2xl fast-transition">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <div class="text-[10px] font-bold text-[#555] uppercase">
+                    PANAMÁ CITY • 2026
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE CHECKOUT -->
+    <!-- MODAL DE PAGO -->
     <div id="purchase-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-[#151515] street-border w-full max-w-sm p-6 relative">
-            <button onclick="closePurchaseModal()" class="absolute top-4 right-4 text-[#9ca3af] hover:text-white bg-[#2a2a2a] w-8 h-8 rounded flex items-center justify-center">
+            <button onclick="closePurchaseModal()" class="absolute top-4 right-4 text-[#9ca3af] hover:text-black bg-[#2a2a2a] hover:bg-[var(--vive-yellow)] w-8 h-8 flex items-center justify-center fast-transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
-            <span class="sticker-badge red text-[9px] mb-3">TAQUILLA</span>
+            <span class="sticker-badge main text-[9px] mb-3">TAQUILLA</span>
             <h3 class="title-urban text-2xl text-white mb-6 border-b border-[#333] pb-3">Confirma tu pase</h3>
-
             <div class="space-y-4 mb-6">
                 <div>
                     <span class="text-[10px] text-[#9ca3af] font-bold uppercase block">Pa' qué es:</span>
-                    <span class="text-sm text-white font-bold" id="modal-event-title">---</span>
+                    <span class="text-sm text-[var(--vive-yellow)] font-bold" id="modal-event-title">---</span>
                 </div>
                 <div class="flex justify-between">
                     <div>
@@ -624,98 +628,84 @@
                     </div>
                     <div class="text-right">
                         <span class="text-[10px] text-[#9ca3af] font-bold uppercase block">Ganas:</span>
-                        <span class="text-base text-[var(--vive-red)] title-urban" id="modal-event-reward">+0 Ptos</span>
+                        <span class="text-base text-[var(--vive-yellow)] title-urban" id="modal-event-reward">+0 Ptos</span>
                     </div>
                 </div>
-
                 <div>
                     <span class="text-[10px] text-[#9ca3af] font-bold uppercase block mb-1">¿Cuántos pases?</span>
                     <div class="flex items-center gap-2">
-                        <button onclick="updateQty(-1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-red)]">-</button>
+                        <button onclick="updateQty(-1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-yellow)] hover:text-black">-</button>
                         <span class="w-10 text-center text-lg font-bold text-white title-urban" id="purchase-qty">1</span>
-                        <button onclick="updateQty(1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-red)]">+</button>
+                        <button onclick="updateQty(1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-yellow)] hover:text-black">+</button>
                     </div>
                 </div>
             </div>
-
             <div class="border-t border-[#333] pt-4 mb-4 flex justify-between items-end">
                 <span class="text-[10px] text-[#9ca3af] font-bold uppercase">Total a pagar:</span>
                 <span class="text-2xl text-white title-urban" id="modal-total-price">$0.00</span>
             </div>
-
-            <button onclick="processSimulatedPayment()" class="w-full btn-urban py-4 text-lg">
-                PAGAR PASE
-            </button>
-            <p class="text-[9px] text-[#555] text-center mt-3 font-bold uppercase">Esto es un demo / Prototipo 2026</p>
+            <button onclick="processSimulatedPayment()" class="w-full btn-urban py-4 text-lg">PAGAR PASE</button>
         </div>
     </div>
 
-    <!-- SCRIPTS DE INTERACCIÓN -->
+    <!-- SCRIPTS -->
     <script>
-        // API Audio Simple para feedback de UI
+        // API Audio
         let audioCtx = null;
         function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-        
         function playSfx(type) {
             initAudio(); if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.connect(gain); gain.connect(audioCtx.destination);
-            
             if (type === 'click') {
                 osc.type = 'square';
-                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.1);
                 gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
                 gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
                 osc.start(); osc.stop(audioCtx.currentTime + 0.1);
             } else if (type === 'success') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-                osc.frequency.setValueAtTime(660, audioCtx.currentTime + 0.1);
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime + 0.15);
                 gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+                gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
             }
         }
 
-        // Cambio Pestañas
         function switchTab(tabId, btn) {
             playSfx('click');
             document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
             document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.remove('active', 'text-[var(--vive-red)]', 'text-white');
+                b.classList.remove('active', 'text-[var(--vive-yellow)]', 'text-white');
                 b.classList.add('text-[#9ca3af]');
             });
-            btn.classList.add('active', 'text-[var(--vive-red)]');
+            btn.classList.add('active', 'text-[var(--vive-yellow)]');
             btn.classList.remove('text-[#9ca3af]');
         }
 
-        // Toasts
         function showToast(msg, cat="AVISO") {
-            const toast = document.getElementById('system-toast');
+            const t = document.getElementById('system-toast');
             document.getElementById('toast-category').innerText = cat;
             document.getElementById('toast-message').innerText = msg;
-            toast.classList.remove('translate-y-12', 'opacity-0');
-            setTimeout(() => toast.classList.add('translate-y-12', 'opacity-0'), 4000);
+            t.classList.remove('translate-y-12', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-y-12', 'opacity-0'), 3500);
         }
 
-        // Variables Globales
         let currentPoints = 450;
         let ticketsList = [];
         let selectedEvent = { title: "", price: 0, reward: 0, qty: 1 };
-        let isTableUnlocked = false;
 
-        // Gestión de Puntos
-        function updatePointsUI(addPts) {
-            currentPoints += addPts;
-            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-[var(--vive-red)]">PTS</span>`;
-            const bar = document.querySelector('.w-full.bg-\\[\\#333\\] .bg-\\[var\\(--vive-red\\)\\]');
+        function updatePointsUI(pts) {
+            currentPoints += pts;
+            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-[var(--vive-yellow)]">PTS</span>`;
+            const bar = document.querySelector('.w-full.bg-\\[\\#333\\] .bg-\\[var\\(--vive-yellow\\)\\]');
             if(bar) bar.style.width = Math.min((currentPoints/500)*100, 100) + '%';
         }
 
-        // Mesa interactiva
         function unlockTableMenu() {
             if(document.getElementById('table-code-input').value.toLowerCase() === 'mesa04') {
                 playSfx('success');
@@ -723,7 +713,7 @@
                 document.getElementById('menu-catalog-container').classList.remove('hidden');
                 showToast("¡Listo! Tas en la Mesa 04.", "CONECTADO");
             } else {
-                playSfx('click'); showToast("Código incorrecto, pon mesa04 bro.", "ERROR");
+                playSfx('click'); showToast("Pon mesa04 bro.", "CÓDIGO FALSO");
             }
         }
 
@@ -735,99 +725,71 @@
         }
 
         function callWaiter() {
-            playSfx('success');
-            showToast("Va un man para allá.", "MESERO AVISADO");
+            playSfx('success'); showToast("Va un man para allá.", "MESERO AVISADO");
             addQueueItem("Mesa 04 solicita Mesero", "EN CAMINO");
         }
 
         function orderItemFromTable(name, price, pts) {
-            playSfx('success');
-            updatePointsUI(pts);
-            showToast(`Metiendo 1x ${name} a la cuenta. +${pts} PTS ganados.`, "PEDIDO LISTO");
-            addQueueItem(`1x ${name} para Mesa 04`, "PREPARANDO");
+            playSfx('success'); updatePointsUI(pts);
+            showToast(`1x ${name} facturado. +${pts} PTS.`, "PEDIDO LISTO");
+            addQueueItem(`1x ${name}`, "PREPARANDO");
         }
 
-        function addQueueItem(text, status) {
+        function addQueueItem(txt, status) {
             const q = document.getElementById('bartender-queue-container');
-            if(q.innerHTML.includes("No has pedido nada")) q.innerHTML = "";
-            const div = document.createElement('div');
-            div.className = "flex justify-between items-center bg-[#151515] border-l-2 border-[var(--vive-red)] px-4 py-2 mt-2";
-            div.innerHTML = `<span class="text-white text-xs font-medium">${text}</span><span class="sticker-badge text-[8px]">${status}</span>`;
-            q.prepend(div);
+            if(q.innerHTML.includes("No has pedido")) q.innerHTML = "";
+            q.innerHTML = `<div class="flex justify-between bg-[#151515] border-l-2 border-[var(--vive-yellow)] px-4 py-2 mt-2">
+                <span class="text-white text-xs font-bold">${txt}</span>
+                <span class="sticker-badge text-[8px]">${status}</span>
+            </div>` + q.innerHTML;
         }
 
-        // Compra Entradas
-        function openPurchaseModal(title, price, pts) {
+        function openPurchaseModal(t, p, pts) {
             playSfx('click');
-            selectedEvent = { title, price, reward: pts, qty: 1 };
-            document.getElementById('modal-event-title').innerText = title;
-            document.getElementById('modal-event-price').innerText = `$${price.toFixed(2)}`;
+            selectedEvent = { title: t, price: p, reward: pts, qty: 1 };
+            document.getElementById('modal-event-title').innerText = t;
+            document.getElementById('modal-event-price').innerText = `$${p.toFixed(2)}`;
             document.getElementById('modal-event-reward').innerText = `+${pts} Ptos`;
             updateTotalDisplay();
             document.getElementById('purchase-modal').classList.remove('hidden');
         }
 
-        function closePurchaseModal() {
-            playSfx('click'); document.getElementById('purchase-modal').classList.add('hidden');
-        }
-
-        function updateQty(d) {
-            playSfx('click');
-            selectedEvent.qty = Math.max(1, selectedEvent.qty + d);
-            updateTotalDisplay();
-        }
-
+        function closePurchaseModal() { playSfx('click'); document.getElementById('purchase-modal').classList.add('hidden'); }
+        function updateQty(d) { playSfx('click'); selectedEvent.qty = Math.max(1, selectedEvent.qty + d); updateTotalDisplay(); }
         function updateTotalDisplay() {
             document.getElementById('purchase-qty').innerText = selectedEvent.qty;
             document.getElementById('modal-total-price').innerText = `$${(selectedEvent.price * selectedEvent.qty).toFixed(2)}`;
         }
 
         function processSimulatedPayment() {
-            playSfx('success');
-            closePurchaseModal();
+            playSfx('success'); closePurchaseModal();
             updatePointsUI(selectedEvent.reward * selectedEvent.qty);
-            
-            ticketsList.push({
-                id: `TKT-${Math.floor(Math.random()*90000)}`,
-                title: selectedEvent.title, qty: selectedEvent.qty,
-                date: "Hoy"
-            });
+            ticketsList.push({ id: `TKT-${Math.floor(Math.random()*90000)}`, title: selectedEvent.title, qty: selectedEvent.qty });
             renderTickets();
-            showToast(`¡Compraste ${selectedEvent.qty} pases! Revísalos en 'Mis Pases'.`, "TAQUILLA APROBADA");
+            showToast(`¡Compraste ${selectedEvent.qty} pases!`, "TAQUILLA");
         }
 
         function renderTickets() {
             const c = document.getElementById('tickets-container');
-            const msg = document.getElementById('no-tickets-message');
             document.getElementById('ticket-badge').classList.remove('hidden');
-            msg.classList.add('hidden');
-            c.innerHTML = "";
-            
-            ticketsList.forEach(t => {
-                c.innerHTML += `
+            document.getElementById('no-tickets-message').classList.add('hidden');
+            c.innerHTML = ticketsList.map(t => `
                 <div class="bg-[#151515] street-border p-5 flex items-center justify-between">
-                    <div>
-                        <span class="sticker-badge text-[8px] mb-2">QR ACTIVO</span>
-                        <h4 class="title-urban text-xl text-white">${t.title}</h4>
-                        <p class="text-xs text-[#9ca3af] mt-1">Válido para: <strong class="text-white">${t.qty} persona(s)</strong> | Cód: ${t.id}</p>
-                    </div>
-                    <div class="bg-white p-2 w-16 h-16 flex items-center justify-center">
-                        <i class="fa-solid fa-qrcode text-3xl text-black"></i>
-                    </div>
-                </div>`;
-            });
+                    <div><span class="sticker-badge main text-[8px] mb-2">QR ACTIVO</span>
+                    <h4 class="title-urban text-lg text-white">${t.title}</h4>
+                    <p class="text-xs text-[#9ca3af] mt-1">Pa': <strong class="text-white">${t.qty} persona(s)</strong> | Cód: ${t.id}</p></div>
+                    <div class="bg-white p-2 w-14 h-14 flex items-center justify-center"><i class="fa-solid fa-qrcode text-2xl text-black"></i></div>
+                </div>`).join('');
         }
 
-        // Rewards
         function redeemReward(name, cost) {
             if (currentPoints >= cost) {
-                playSfx('success');
-                updatePointsUI(-cost);
-                showToast(`Canjeaste: ${name}. Revisa tus pases.`, "PROMO ACTIVA");
+                playSfx('success'); updatePointsUI(-cost);
+                showToast(`Canjeaste: ${name}.`, "PROMO ACTIVA");
                 ticketsList.push({ id: `RWD-${Math.floor(Math.random()*9000)}`, title: name, qty: 1 });
                 renderTickets();
             } else {
-                playSfx('click'); showToast(`Te faltan puntos bro. Necesitas ${cost}.`, "ERROR");
+                playSfx('click'); showToast(`Te faltan puntos bro.`, "ERROR");
             }
         }
     </script>
