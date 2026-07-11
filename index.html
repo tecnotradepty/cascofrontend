@@ -3,307 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIVE CASCO - Club Privado & Reservas</title>
-    <!-- Tailwind CSS para layouts fluidos -->
+    <title>VIVE CASCO | Cero filas. Puro flow.</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display (Serif Elegante) e Inter (Minimalista Funcional) -->
+    <!-- Google Fonts: Oswald (Títulos fuertes) y Montserrat (Texto moderno y legible) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Stylesheets para personalización y overrides basados en image_2d751f.jpg y image_2d7258.jpg -->
     <style>
         :root {
-            --color-bg-dark: #0c0a09; /* Carbón profundo muy cálido */
-            --color-card-dark: #141211; /* Chocolate/carbón cálido para contenedores */
-            --color-gold: #c5a880; /* Oro champaña de image_2d7258.jpg */
-            --color-gold-hover: #dfba8a; /* Oro brillante para estados activos */
-            --color-cream: #f5f2eb; /* Crema suave para texto principal */
-            --color-muted: #a39e95; /* Tono arena para descripciones */
+            /* Paleta VIVE: Urbana, oscura, luces de rumba */
+            --bg-deep: #0a0a0a; /* Negro absoluto */
+            --bg-card: #151515; /* Gris muy oscuro para contraste */
+            --vive-red: #e60000; /* Rojo sangría de Vive */
+            --vive-red-hover: #ff1a1a;
+            --vive-fuchsia: #ff007f; /* Fucsia neón */
+            --text-main: #f3f4f6; /* Blanco roto */
+            --text-muted: #9ca3af; /* Gris claro */
+            --promo-yellow: #ffeb3b; /* Amarillo sticker */
         }
 
         body {
-            background-color: var(--color-bg-dark);
-            color: var(--color-cream);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
 
-        .serif-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
+        /* Tipografías Urbanas */
+        .title-urban {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .serif-italic {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
-
-        /* Bordes ultra finos de alta costura */
-        .gold-border {
-            border: 1px solid rgba(197, 168, 128, 0.15);
+        /* Estilo Neo-Brutalista (Flyers de Calle) */
+        .street-border {
+            border: 2px solid #2a2a2a;
         }
         
-        .gold-border-focus:focus-within {
-            border-color: var(--color-gold);
+        .street-border:hover {
+            border-color: var(--vive-red);
         }
 
-        /* Transiciones suaves profesionales */
-        .smooth-transition {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .btn-urban {
+            background-color: var(--vive-red);
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s ease-out;
+        }
+        
+        /* Efecto de botón que se hunde ligeramente */
+        .btn-urban:hover {
+            background-color: var(--vive-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(230, 0, 0, 0.4);
+        }
+        
+        .btn-urban:active {
+            transform: translateY(1px);
         }
 
-        /* Custom scrollbar para simular diseño de catálogo */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0c0a09;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #272321;
-            border-radius: 2px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-gold);
+        /* Stickers y Badges inclinados */
+        .sticker-badge {
+            background-color: var(--promo-yellow);
+            color: #000;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            padding: 4px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.8);
         }
 
-        /* Estilo para los botones de navegación */
+        .sticker-badge.red {
+            background-color: var(--vive-red);
+            color: #fff;
+            transform: rotate(2deg);
+        }
+
+        /* Transiciones rápidas (No tan suaves como un hotel, más rápidas para rumba) */
+        .fast-transition {
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--vive-red); }
+
+        /* Navegación Activa */
         .nav-btn {
             position: relative;
-            font-size: 13px;
-            letter-spacing: 0.15em;
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
         .nav-btn::after {
             content: '';
             position: absolute;
             bottom: -6px;
-            left: 50%;
+            left: 0;
             width: 0;
-            height: 1px;
-            background-color: var(--color-gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            height: 2px;
+            background-color: var(--vive-red);
+            transition: width 0.3s ease;
         }
         .nav-btn.active::after, .nav-btn:hover::after {
             width: 100%;
         }
-
-        /* Efecto de máscara elegante para las fotos de fondo */
-        .image-overlay {
-            background: linear-gradient(180deg, rgba(12,10,9,0.3) 0%, rgba(12,10,9,0.9) 100%);
-        }
-
-        /* Clases de utilidad para el diseño asimétrico de image_2d751f.jpg */
-        .asymmetric-offset-y {
-            margin-top: -30px;
-        }
+        .nav-btn.active { color: var(--vive-red); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- HEADER / NAVEGACIÓN DE ALTA GAMA -->
-    <header class="sticky top-0 z-50 bg-[#0c0a09]/95 backdrop-blur-md border-b border-[#c5a880]/10 px-6 py-5 smooth-transition">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
-            <!-- Logo elegante serif inspirado en image_2d7258.jpg -->
-            <div class="flex flex-col items-center lg:items-start">
-                <span class="serif-title text-2xl tracking-[0.2em] text-white">VIVE CASCO</span>
-                <span class="text-[9px] uppercase tracking-[0.4em] text-[#c5a880] mt-1">Club Privado & Reservas</span>
+    <!-- HEADER / NAVEGACIÓN URBANA -->
+    <header class="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-lg border-b border-[#2a2a2a] px-6 py-4 fast-transition">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo (Simulado de Vive Casco) -->
+            <div class="flex items-center gap-3 lg:items-start cursor-pointer">
+                <!-- Icono V abstracto -->
+                <div class="w-8 h-8 flex items-center justify-center border-2 border-white transform rotate-45 group">
+                    <span class="transform -rotate-45 text-white font-bold title-urban text-lg group-hover:text-red-500 fast-transition">V</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="title-urban text-2xl text-white leading-none tracking-wider">VIVE</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-[#9ca3af]">CASCO VIEJO</span>
+                </div>
             </div>
 
-            <!-- Navegación Refinada -->
-            <nav class="flex flex-wrap justify-center gap-6 md:gap-8 items-center text-xs">
-                <button onclick="switchTab('eventos', this)" class="nav-btn active text-white font-medium smooth-transition">
-                    Experiencias
+            <!-- Navegación -->
+            <nav class="flex flex-wrap justify-center gap-6 md:gap-8 items-center mt-2 lg:mt-0">
+                <button onclick="switchTab('eventos', this)" class="nav-btn active text-white fast-transition">
+                    La Cartelera
                 </button>
-                <button onclick="switchTab('menu', this)" class="nav-btn text-[#a39e95] hover:text-white font-medium smooth-transition flex items-center gap-2">
-                    <i class="fa-solid fa-beer-mug-empty text-[10px]"></i> Menú en Mesa
+                <button onclick="switchTab('menu', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">
+                    <i class="fa-solid fa-bottle-droplet mr-1 text-xs"></i> Pide a la Mesa
                 </button>
-                <button onclick="switchTab('fidelizacion', this)" class="nav-btn text-[#a39e95] hover:text-white font-medium smooth-transition">
-                    El Club VIVE
+                <button onclick="switchTab('fidelizacion', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition">
+                    VIVE Crew
                 </button>
-                <button onclick="switchTab('tickets', this)" class="nav-btn text-[#a39e95] hover:text-white font-medium smooth-transition flex items-center">
-                    Mis Reservas
-                    <span id="ticket-badge" class="ml-2 w-2 h-2 rounded-full bg-[#c5a880] hidden"></span>
+                <button onclick="switchTab('tickets', this)" class="nav-btn text-[#9ca3af] hover:text-white fast-transition flex items-center">
+                    Mis Pases
+                    <span id="ticket-badge" class="ml-2 w-2 h-2 rounded-full bg-[var(--vive-red)] hidden"></span>
                 </button>
             </nav>
 
-            <!-- Estatus de Consumo de Miembro -->
-            <div class="flex items-center gap-4 bg-[#141211] gold-border px-5 py-2.5 rounded-none">
+            <!-- Estatus de Consumo (Flow de Rumba) -->
+            <div class="flex items-center gap-3 bg-[#151515] border border-[#333] px-4 py-2 mt-2 lg:mt-0">
                 <div class="text-right">
-                    <div class="text-[8px] text-[#a39e95] uppercase tracking-[0.2em]">Créditos Reserva</div>
-                    <div class="text-base font-semibold text-[#c5a880] tracking-wide" id="user-points-display">450 <span class="text-[10px] text-white/70 ml-0.5">PTS</span></div>
+                    <div class="text-[9px] text-[#9ca3af] uppercase font-bold tracking-wider">Tus Puntos</div>
+                    <div class="text-sm font-bold text-white title-urban tracking-wide" id="user-points-display">450 <span class="text-[10px] text-[var(--vive-red)]">PTS</span></div>
                 </div>
-                <div class="w-[1px] h-8 bg-[#c5a880]/20"></div>
-                <div class="flex items-center justify-center bg-[#1c1817] w-8 h-8 rounded-full">
-                    <i class="fa-solid fa-crown text-[11px] text-[#c5a880]"></i>
+                <div class="w-[1px] h-6 bg-[#333]"></div>
+                <div class="flex items-center justify-center text-[var(--vive-red)]">
+                    <i class="fa-solid fa-fire text-sm"></i>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NOTIFICACIÓN TIPO BANNER DE HOTEL (Elegante y sutil) -->
-    <div id="system-toast" class="fixed bottom-8 right-8 z-50 pointer-events-none transform translate-y-12 opacity-0 transition-all duration-500">
-        <div class="bg-[#141211] gold-border px-6 py-4 rounded-none shadow-2xl flex items-center gap-4 max-w-sm">
-            <div id="toast-icon" class="text-[#c5a880] text-sm">
-                <i class="fa-solid fa-circle-notch animate-spin"></i>
+    <!-- TOAST NOTIFICATIONS (Estilo Pop-up de juego/app) -->
+    <div id="system-toast" class="fixed bottom-6 right-6 z-50 pointer-events-none transform translate-y-12 opacity-0 transition-all duration-300">
+        <div class="bg-[#151515] border-l-4 border-[var(--vive-red)] px-5 py-3 shadow-2xl shadow-red-900/20 flex items-center gap-4 max-w-sm">
+            <div id="toast-icon" class="text-[var(--vive-red)] text-lg">
+                <i class="fa-solid fa-bolt"></i>
             </div>
-            <div class="border-l border-[#c5a880]/20 pl-4">
-                <p class="text-[9px] text-[#a39e95] uppercase tracking-widest" id="toast-category">Notificación</p>
-                <p class="text-xs text-white mt-0.5" id="toast-message">Procesando solicitud de reserva...</p>
+            <div>
+                <p class="text-[10px] font-bold text-[#9ca3af] uppercase tracking-widest title-urban" id="toast-category">Aviso</p>
+                <p class="text-xs text-white mt-0.5 font-medium" id="toast-message">Activando flow...</p>
             </div>
         </div>
     </div>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-6 py-12 md:py-16 w-full flex-grow">
+    <main class="max-w-7xl mx-auto px-6 py-10 w-full flex-grow">
         
-        <!-- PESTAÑA 1: EVENTOS / PORTAL DE COMPRAS -->
+        <!-- PESTAÑA 1: LA CARTELERA (Eventos Reales) -->
         <section id="tab-eventos" class="tab-content block">
-            <div class="mb-16 max-w-3xl">
-                <span class="text-[10px] uppercase tracking-[0.4em] text-[#c5a880] block mb-3">La noche a tu propio ritmo</span>
-                <h1 class="serif-title text-4xl md:text-5xl text-white leading-tight mb-4">
-                    Reserva directa e inmediata en <span class="serif-italic">las salas más selectas</span> del Casco.
+            <div class="mb-12 max-w-2xl">
+                <span class="sticker-badge red text-[10px] mb-4">TAQUILLA DIGITAL 100% OFICIAL</span>
+                <h1 class="title-urban text-4xl md:text-5xl text-white leading-none mb-3 mt-4">
+                    Cero filas.<br><span class="text-[var(--vive-red)]">Puro Flow.</span>
                 </h1>
-                <p class="text-[#a39e95] text-sm md:text-base leading-relaxed font-light">
-                    Evita las plataformas de eventos masivos de siempre. Gestiona tus entradas para eventos, reservas de mesas vip y obtén créditos exclusivos para canjear en barmanía directamente desde tu teléfono.
+                <p class="text-[#9ca3af] text-sm md:text-base font-medium">
+                    Asegura tu entrada, saca tu código QR y pide guaro a tu mesa sin tener que empujarte en la barra. Tú controlas el parking.
                 </p>
             </div>
 
-            <!-- Grid de Eventos / Experiencias Estilo Editorial -->
+            <!-- Grid de Eventos -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- Experiencia 1: Secret Chiefs @ Teatro Amador (Estilo image_2d7258.jpg) -->
-                <div class="bg-[#141211] gold-border flex flex-col justify-between smooth-transition hover:border-[#c5a880]/40 group">
-                    <div class="relative h-72 overflow-hidden bg-[#0c0a09]">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-                             style="background-image: url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&q=80&w=600');"></div>
-                        <div class="absolute inset-0 image-overlay"></div>
+                <!-- Evento 1: Kiss Party -->
+                <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
+                    <div class="relative h-80 overflow-hidden bg-black">
+                        <!-- Imagen de la Kiss Party -->
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
+                             style="background-image: url('https://raw.githubusercontent.com/tecnotradepty/cascofrontend/2be6baa9a34de0247727f94055a2ba217acd2f20/vive/504650012_17994989471815319_2796213306670899889_n.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
                         
-                        <div class="absolute top-5 left-5 bg-[#0c0a09]/90 border border-[#c5a880]/30 text-[#c5a880] text-[9px] uppercase tracking-widest px-3 py-1.5">
-                            Jazz & Soul Lounge
-                        </div>
-                        <div class="absolute top-5 right-5 bg-[#c5a880] text-black text-[9px] font-semibold uppercase tracking-widest px-2.5 py-1.5">
-                            +50 Ptos Club
+                        <div class="absolute top-4 left-4 sticker-badge text-[10px]">
+                            TODOS GRATIS HASTA 11PM
                         </div>
                     </div>
-                    <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">Teatro Amador</span>
-                                <span class="w-[4px] h-[4px] rounded-full bg-[#c5a880]"></span>
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">Julio 18, 2026</span>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">SÁB. 5 JULIO</span>
                             </div>
-                            <h3 class="serif-title text-2xl text-white mb-3 group-hover:text-[#c5a880] smooth-transition">Secret Chiefs: Club del Cóctel</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mb-6">
-                                Una velada curada con mixólogos invitados, jazz en vivo y un maridaje de botellas premium seleccionadas especialmente para miembros.
-                            </p>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">KISS PARTY</h3>
+                            <p class="text-white text-sm font-bold mb-3">Encuentra tu match by Ginosky</p>
+                            <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
+                                <p><i class="fa-solid fa-microphone text-[var(--vive-red)] w-4"></i> Show en Tarima</p>
+                                <p><i class="fa-solid fa-martini-glass text-[var(--vive-red)] w-4"></i> Open Bar hasta las 2 AM</p>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between items-end border-t border-[#c5a880]/15 pt-5 mb-6">
+                            <div class="flex justify-between items-end border-t border-[#333] pt-4 mb-4">
                                 <div>
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Precio Miembro</span>
-                                    <span class="text-xl font-medium text-white tracking-wide">$20.00 <span class="text-xs text-[#a39e95]">USD</span></span>
+                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Taquilla / Después de 11PM</span>
+                                    <span class="text-xl font-bold text-white title-urban">$15.00</span>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Tarifa Reserva</span>
-                                    <span class="text-xs text-[#c5a880] font-medium tracking-wide">Sin cargos extra</span>
+                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+30 Ptos</span>
                                 </div>
                             </div>
-                            <button onclick="openPurchaseModal('Secret Chiefs Lounge @ Teatro Amador', 20.00, 50)" class="w-full bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold py-3.5 px-4 tracking-[0.2em] uppercase smooth-transition">
-                                Reservar Acceso
+                            <button onclick="openPurchaseModal('KISS PARTY - Ticket Regular', 15.00, 30)" class="w-full btn-urban py-3 text-sm">
+                                Asegurar Pase
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Experiencia 2: Mixología de Azotea en Rooftop -->
-                <div class="bg-[#141211] gold-border flex flex-col justify-between smooth-transition hover:border-[#c5a880]/40 group md:translate-y-4">
-                    <div class="relative h-72 overflow-hidden bg-[#0c0a09]">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-                             style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=600');"></div>
-                        <div class="absolute inset-0 image-overlay"></div>
+                <!-- Evento 2: Copa del Pecado -->
+                <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
+                    <div class="relative h-80 overflow-hidden bg-black">
+                        <!-- Imagen de la Copa del Pecado -->
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
+                             style="background-image: url('https://raw.githubusercontent.com/tecnotradepty/cascofrontend/2be6baa9a34de0247727f94055a2ba217acd2f20/vive/721601509_18015418985889620_8809329803390516786_n.webp');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
                         
-                        <div class="absolute top-5 left-5 bg-[#0c0a09]/90 border border-[#c5a880]/30 text-[#c5a880] text-[9px] uppercase tracking-widest px-3 py-1.5">
-                            Mixología de Autor
-                        </div>
-                        <div class="absolute top-5 right-5 bg-[#c5a880] text-black text-[9px] font-semibold uppercase tracking-widest px-2.5 py-1.5">
-                            +40 Ptos Club
+                        <div class="absolute top-4 left-4 sticker-badge red text-[10px]">
+                            CHICAS GRATIS CON QR
                         </div>
                     </div>
-                    <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">Lazotea Premium</span>
-                                <span class="w-[4px] h-[4px] rounded-full bg-[#c5a880]"></span>
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">Julio 25, 2026</span>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">VIE. 12 JUNIO</span>
                             </div>
-                            <h3 class="serif-title text-2xl text-white mb-3 group-hover:text-[#c5a880] smooth-transition">Noche de Infusiones & Gin</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mb-6">
-                                Disfruta de la mejor vista de la ciudad mientras nuestro sommelier te guía en un viaje de infusiones botánicas raras con destilados ultra premium.
-                            </p>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">COPA DEL PECADO</h3>
+                            <p class="text-white text-sm font-bold mb-3">Lo prohibido también tiene campeón.</p>
+                            <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
+                                <p><i class="fa-solid fa-headphones text-[var(--vive-red)] w-4"></i> Guest DJ: Junstinnsee</p>
+                                <p><i class="fa-solid fa-glass-water text-[var(--vive-red)] w-4"></i> Open Bar (Ron & Vodka) hasta 3 AM</p>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between items-end border-t border-[#c5a880]/15 pt-5 mb-6">
+                            <div class="flex justify-between items-end border-t border-[#333] pt-4 mb-4">
                                 <div>
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Precio Miembro</span>
-                                    <span class="text-xl font-medium text-white tracking-wide">$15.00 <span class="text-xs text-[#a39e95]">USD</span></span>
+                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Hombres (Preventa)</span>
+                                    <span class="text-xl font-bold text-white title-urban">$20.00</span>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Tarifa Reserva</span>
-                                    <span class="text-xs text-[#c5a880] font-medium tracking-wide">Sin cargos extra</span>
+                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+40 Ptos</span>
                                 </div>
                             </div>
-                            <button onclick="openPurchaseModal('Infusiones & Gin @ Lazotea Rooftop', 15.00, 40)" class="w-full bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold py-3.5 px-4 tracking-[0.2em] uppercase smooth-transition">
-                                Reservar Acceso
-                            </button>
+                            <!-- Dos botones para simular acceso QR chicas y pago hombres -->
+                            <div class="flex gap-2">
+                                <button onclick="openPurchaseModal('COPA DEL PECADO - QR Chicas (Gratis)', 0.00, 10)" class="w-1/2 bg-[#333] hover:bg-[#444] text-white font-bold font-['Oswald'] uppercase text-xs py-3 fast-transition">
+                                    Sacar QR
+                                </button>
+                                <button onclick="openPurchaseModal('COPA DEL PECADO - Pase Hombres', 20.00, 40)" class="w-1/2 btn-urban py-3 text-xs">
+                                    Comprar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Experiencia 3: VIP Stage Mesa Privada (Estilo image_2d751f.jpg) -->
-                <div class="bg-[#141211] gold-border flex flex-col justify-between smooth-transition hover:border-[#c5a880]/40 group md:translate-y-8">
-                    <div class="relative h-72 overflow-hidden bg-[#0c0a09]">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-                             style="background-image: url('https://images.unsplash.com/photo-1574096079513-d8259312b785?auto=format&fit=crop&q=80&w=600');"></div>
-                        <div class="absolute inset-0 image-overlay"></div>
+                <!-- Evento 3: Brazilian Funk -->
+                <div class="bg-[#151515] street-border flex flex-col justify-between group overflow-hidden">
+                    <div class="relative h-80 overflow-hidden bg-black">
+                        <!-- Imagen de Brazilian Funk -->
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 opacity-80" 
+                             style="background-image: url('https://pbs.twimg.com/media/GXH2FlsWsAAI7eW?format=jpg&name=large');"></div> <!-- URL alternativa pública por si el repo bloquea hotlinking -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent"></div>
                         
-                        <div class="absolute top-5 left-5 bg-[#0c0a09]/90 border border-[#c5a880]/30 text-[#c5a880] text-[9px] uppercase tracking-widest px-3 py-1.5">
-                            Sala Imperial VIP
-                        </div>
-                        <div class="absolute top-5 right-5 bg-[#c5a880] text-black text-[9px] font-semibold uppercase tracking-widest px-2.5 py-1.5">
-                            +100 Ptos Club
+                        <div class="absolute top-4 left-4 sticker-badge text-[10px] bg-[#00e676]">
+                            WELCOME CAIPIRINHAS
                         </div>
                     </div>
-                    <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div class="p-6 flex-grow flex flex-col justify-between relative -mt-16 z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">La Compañía</span>
-                                <span class="w-[4px] h-[4px] rounded-full bg-[#c5a880]"></span>
-                                <span class="text-[10px] text-[#a39e95] uppercase tracking-widest">Sábados</span>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm">SÁB. 11 JULIO</span>
                             </div>
-                            <h3 class="serif-title text-2xl text-white mb-3 group-hover:text-[#c5a880] smooth-transition">Reserva de Mesa Club</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mb-6">
-                                Aparta la mejor locación en nuestra cava privada. Acceso para 6 invitados con mayordomo asignado y crédito total de botellas premium incluido.
-                            </p>
+                            <h3 class="title-urban text-3xl text-white mb-1 group-hover:text-[var(--vive-red)] fast-transition">BRAZILIAN FUNK</h3>
+                            <p class="text-white text-sm font-bold mb-3">Esto solo se vive en VIVE.</p>
+                            <div class="text-[#9ca3af] text-xs space-y-1 mb-6">
+                                <p><i class="fa-solid fa-music text-[var(--vive-red)] w-4"></i> LC Deejay en los controles</p>
+                                <p><i class="fa-solid fa-wine-bottle text-[var(--vive-red)] w-4"></i> Open Bar hasta las 2 AM</p>
+                            </div>
                         </div>
                         <div>
-                            <div class="flex justify-between items-end border-t border-[#c5a880]/15 pt-5 mb-6">
+                            <div class="flex justify-between items-end border-t border-[#333] pt-4 mb-4">
                                 <div>
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Precio Base</span>
-                                    <span class="text-xl font-medium text-white tracking-wide">$120.00 <span class="text-xs text-[#a39e95]">USD</span></span>
+                                    <span class="text-[9px] text-[#9ca3af] font-bold uppercase block">Pase General</span>
+                                    <span class="text-xl font-bold text-white title-urban">$15.00</span>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Mesa</span>
-                                    <span class="text-xs text-[#c5a880] font-medium tracking-wide">Crédito Consumo</span>
+                                    <span class="text-[10px] text-[var(--vive-red)] font-bold block">+30 Ptos</span>
                                 </div>
                             </div>
-                            <button onclick="openPurchaseModal('Mesa Privada Club @ La Compañía', 120.00, 100)" class="w-full bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold py-3.5 px-4 tracking-[0.2em] uppercase smooth-transition">
-                                Reservar Mesa
+                            <button onclick="openPurchaseModal('BRAZILIAN FUNK - Pase General', 15.00, 30)" class="w-full btn-urban py-3 text-sm">
+                                Asegurar Pase
                             </button>
                         </div>
                     </div>
@@ -313,996 +335,501 @@
         </section>
 
 
-        <!-- PESTAÑA NUEVA: MENÚ INTERACTIVO EN MESA -->
+        <!-- PESTAÑA 2: MENÚ INTERACTIVO EN MESA (PIDE TU GUARO) -->
         <section id="tab-menu" class="tab-content hidden">
             
             <!-- GATEKEEPER DE SEGURIDAD (Acceso a Mesa) -->
-            <div id="menu-gatekeeper" class="max-w-md mx-auto text-center py-12 bg-[#141211] gold-border p-8 smooth-transition">
-                <span class="text-[#c5a880] text-3xl mb-4 block">
-                    <i class="fa-solid fa-key"></i>
+            <div id="menu-gatekeeper" class="max-w-md mx-auto text-center py-10 bg-[#151515] street-border p-8 mt-8">
+                <span class="text-[var(--vive-red)] text-4xl mb-4 block">
+                    <i class="fa-solid fa-qrcode"></i>
                 </span>
-                <span class="text-[9px] uppercase tracking-[0.3em] text-[#c5a880] block mb-2 font-semibold">Autenticación Requerida</span>
-                <h2 class="serif-title text-2xl text-white mb-4">Ingresa el código de tu mesa</h2>
-                <p class="text-xs text-[#a39e95] mb-6 font-light leading-relaxed">
-                    Para realizar pedidos directos desde tu ubicación sin tener que ir a la barra o hacer filas, introduce la clave de acceso de tu mesa.
+                <h2 class="title-urban text-3xl text-white mb-2">Conecta tu Mesa</h2>
+                <p class="text-sm text-[#9ca3af] mb-6 font-medium">
+                    Pon el código de tu mesa pa' pedir las botellas y los cubetazos directo. Cero filas en la barra.
                 </p>
                 <div class="mb-6">
-                    <input id="table-code-input" type="text" placeholder="CÓDIGO DE MESA" class="w-full text-center bg-[#0c0a09] border border-[#c5a880]/30 px-4 py-3 text-sm focus:outline-none focus:border-[#c5a880] text-white tracking-widest uppercase mb-2 font-mono">
-                    <p class="text-[9px] text-[#a39e95] font-light text-left mt-2">Clave de prueba rápida del prototipo: <strong class="text-[#c5a880] font-mono">mesa04</strong></p>
+                    <input id="table-code-input" type="text" placeholder="Ej: mesa04" class="w-full text-center bg-[#0a0a0a] border-2 border-[#333] px-4 py-4 text-lg focus:outline-none focus:border-[var(--vive-red)] text-white font-bold uppercase mb-2">
+                    <p class="text-[10px] text-[#9ca3af] font-bold">Clave de prueba pa'l demo: <strong class="text-[var(--vive-yellow)] text-white">mesa04</strong></p>
                 </div>
-                <button onclick="unlockTableMenu()" class="w-full bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold py-3.5 px-4 tracking-[0.2em] uppercase smooth-transition">
-                    Acceder a la Carta
+                <button onclick="unlockTableMenu()" class="w-full btn-urban py-4 text-base">
+                    Entrar al Menú
                 </button>
             </div>
 
-            <!-- CONTENIDO DE CARTA ACTIVA (Inicialmente oculto) -->
-            <div id="menu-catalog-container" class="hidden smooth-transition">
+            <!-- CONTENIDO DE CARTA ACTIVA -->
+            <div id="menu-catalog-container" class="hidden fast-transition">
                 <!-- Header de la Mesa Activa -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 pb-6 border-b border-[#c5a880]/15">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-4 border-b-2 border-[#2a2a2a]">
                     <div>
-                        <span class="text-[10px] uppercase tracking-[0.4em] text-[#c5a880] block mb-1">Servicio Premium en Mesa</span>
-                        <h2 class="serif-title text-3xl text-white">Carta Digital de Barra • <span class="serif-italic text-[#c5a880]" id="active-table-id">Mesa 04</span></h2>
+                        <span class="bg-[var(--vive-red)] text-white text-[10px] font-bold px-2 py-0.5 rounded-sm mb-2 inline-block">CONECTADO</span>
+                        <h2 class="title-urban text-3xl text-white">Barra Digital <span class="text-[var(--vive-red)]">/</span> <span id="active-table-id">Mesa 04</span></h2>
                     </div>
-                    <div class="flex flex-wrap gap-4 w-full md:w-auto">
+                    <div class="flex flex-wrap gap-3 w-full md:w-auto">
                         <!-- Llamado al salonero -->
-                        <button onclick="callWaiter()" class="flex-grow md:flex-none bg-[#141211] hover:bg-[#1c1817] border border-[#c5a880] text-[#c5a880] hover:text-[#dfba8a] text-xs font-semibold px-5 py-3 tracking-widest uppercase smooth-transition">
-                            <i class="fa-solid fa-bell-concierge mr-2"></i> Llamar al Salonero
+                        <button onclick="callWaiter()" class="flex-grow md:flex-none bg-[#2a2a2a] hover:bg-[#333] text-white font-bold text-xs px-4 py-3 uppercase fast-transition border border-[#444]">
+                            <i class="fa-solid fa-hand-sparkles text-[var(--promo-yellow)] mr-1"></i> Llamar Mesero
                         </button>
-                        <!-- Bloquear Mesa (Simular salida) -->
-                        <button onclick="lockTableMenu()" class="border border-red-900/40 hover:border-red-600 text-[#a39e95] hover:text-red-400 text-xs px-4 py-3 smooth-transition" title="Cerrar Mesa">
-                            <i class="fa-solid fa-door-open mr-1"></i> Salir de Mesa
+                        <!-- Salir -->
+                        <button onclick="lockTableMenu()" class="bg-transparent hover:bg-[#2a2a2a] text-[#9ca3af] border border-[#333] text-xs px-4 py-3 uppercase fast-transition">
+                            <i class="fa-solid fa-power-off"></i> Salir
                         </button>
                     </div>
                 </div>
 
-                <!-- Notificación rápida de pedido e instrucciones de cashback de fidelización -->
-                <div class="bg-[#141211]/60 gold-border p-5 mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <p class="text-xs text-[#a39e95] font-light">
-                        <strong class="text-white">Cashback Activo:</strong> Cada trago o botella pedida desde la mesa te reintegra el <strong class="text-[#c5a880]">10%</strong> en Créditos Club VIVE de inmediato para canje de pases o upgrades.
+                <!-- Notificación rápida Promo Cashback -->
+                <div class="bg-[var(--vive-red)]/10 border border-[var(--vive-red)] p-4 mb-8 flex items-center justify-between">
+                    <p class="text-xs text-white font-bold">
+                        <i class="fa-solid fa-fire text-[var(--vive-red)] mr-2"></i> Pide por aquí y acumula <span class="text-[var(--vive-red)]">10% cashback</span> en puntos Vive pa' la próxima vuelta.
                     </p>
-                    <span class="text-[9px] uppercase tracking-widest bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] px-3 py-1 font-mono">Sin Cargos de Servicio</span>
                 </div>
 
-                <!-- Grid de la Carta de Tragos -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Grid de Tragos y Botellas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Producto 1: Seco Herrerano Premium -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/40 smooth-transition">
+                    <!-- Producto 1: Botella Seco Herrerano -->
+                    <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Seco Nacional
-                                </span>
-                                <span class="text-xs font-semibold text-white tracking-wide font-mono">$65.00 <span class="text-[9px] text-[#a39e95]">USD</span></span>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Pa' la mesa entera</span>
+                                <span class="text-sm font-bold text-white title-urban">$65.00</span>
                             </div>
-                            <h3 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">Seco Herrerano Platinium (Servicio Botella)</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Edición de lujo triple filtrada para una suavidad inigualable. Acompañado de hielo tallado, tónicas premium o jugos a elección.
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Botella Seco Herrerano</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
+                                La clásica de Panamá. Trae hielo, mezcladores y servicio directo a tu spot.
                             </p>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/10 flex justify-between items-center">
-                            <span class="text-[10px] text-green-500 font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span> En Stock
+                        <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
                             </span>
-                            <button onclick="orderItemFromTable('Seco Herrerano Platinium (Botella)', 65.00, 30)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                Solicitar a Mesa
+                            <button onclick="orderItemFromTable('Botella Seco Herrerano', 65.00, 30)" class="btn-urban text-[10px] py-2 px-4">
+                                Mandar a Mesa
                             </button>
                         </div>
                     </div>
 
-                    <!-- Producto 2: Ron Abuelo 12 Años -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/40 smooth-transition">
+                    <!-- Producto 2: Ron Abuelo 12 -->
+                    <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Rones Extra Añejos
-                                </span>
-                                <span class="text-xs font-semibold text-white tracking-wide font-mono">$85.00 <span class="text-[9px] text-[#a39e95]">USD</span></span>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Botella Premium</span>
+                                <span class="text-sm font-bold text-white title-urban">$85.00</span>
                             </div>
-                            <h3 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">Ron Abuelo 12 Años (Gran Reserva)</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Envejecido en barricas de roble seleccionadas. Destilado de alta gama de la península de Azuero. Copa o Botella completa con servicio de mesa.
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Ron Abuelo 12 Años</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
+                                Pa' tomarlo suave. Botella completa con servicio VIP.
                             </p>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/10 flex justify-between items-center">
-                            <span class="text-[10px] text-green-500 font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span> En Stock
+                        <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
                             </span>
-                            <button onclick="orderItemFromTable('Ron Abuelo 12 Años (Botella)', 85.00, 40)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                Solicitar a Mesa
+                            <button onclick="orderItemFromTable('Botella Ron Abuelo 12', 85.00, 40)" class="btn-urban text-[10px] py-2 px-4">
+                                Mandar a Mesa
                             </button>
                         </div>
                     </div>
 
-                    <!-- Producto 3: Ron Abuelo Centuria -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between opacity-50 relative group">
-                        <!-- Tag de Agotado elegante -->
-                        <div class="absolute inset-0 bg-[#0c0a09]/30 backdrop-blur-[1px] flex items-center justify-center pointer-events-none">
-                            <span class="border border-red-500/40 text-red-400 bg-[#0c0a09] text-[10px] tracking-widest uppercase px-4 py-2 font-mono font-medium">AGOTADO ESTA NOCHE</span>
-                        </div>
+                    <!-- Producto 3: Cubetazo Balboa Ice -->
+                    <div class="bg-[#151515] street-border p-5 flex flex-col justify-between group">
                         <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#1c1817] text-[#a39e95] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Reserva Familiar
-                                </span>
-                                <span class="text-xs font-semibold text-[#a39e95] tracking-wide font-mono">$280.00 <span class="text-[9px]">USD</span></span>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="text-[#9ca3af] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Las Frías</span>
+                                <span class="text-sm font-bold text-white title-urban">$24.00</span>
                             </div>
-                            <h3 class="serif-title text-xl text-white line-through">Ron Abuelo Centuria Reserva</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Destilado de solera selecta de rones de hasta 30 años. Máxima expresión de la maestría ronera panameña.
+                            <h3 class="title-urban text-xl text-white group-hover:text-[var(--vive-red)]">Cubetazo Balboa Ice (6)</h3>
+                            <p class="text-[#9ca3af] text-xs font-medium mt-2">
+                                Cubeta hasta el tope de hielo con 6 Balboa Ice bien frías pa' refrescar.
                             </p>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/15 flex justify-between items-center">
-                            <span class="text-[10px] text-[#a39e95] font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-[#a39e95]"></span> Sin stock
+                        <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
+                            <span class="text-[10px] text-[#00e676] font-bold uppercase flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#00e676]"></span> Hay stock
                             </span>
-                            <button disabled class="bg-[#1c1817] text-[#a39e95]/40 text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase cursor-not-allowed">
+                            <button onclick="orderItemFromTable('Cubetazo Balboa Ice', 24.00, 15)" class="btn-urban text-[10px] py-2 px-4">
+                                Mandar a Mesa
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Producto 4: Agotado (Simulación) -->
+                    <div class="bg-[#151515] street-border p-5 flex flex-col justify-between opacity-50 relative">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none z-10">
+                            <span class="sticker-badge red text-lg">SOLD OUT</span>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="text-[#555] font-bold text-[10px] uppercase border border-[#333] px-2 py-1">Promoción</span>
+                                <span class="text-sm font-bold text-[#555] title-urban">$45.00</span>
+                            </div>
+                            <h3 class="title-urban text-xl text-[#888]">Promo Smirnoff + Jugos</h3>
+                            <p class="text-[#555] text-xs font-medium mt-2">Botella de Vodka Smirnoff con cranberry. Se nos acabó temprano.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-[#2a2a2a] flex justify-between items-center">
+                            <span class="text-[10px] text-[var(--vive-red)] font-bold uppercase flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[var(--vive-red)]"></span> Se acabó
+                            </span>
+                            <button disabled class="bg-[#2a2a2a] text-[#555] font-bold text-[10px] py-2 px-4 uppercase cursor-not-allowed">
                                 Agotado
                             </button>
                         </div>
                     </div>
 
-                    <!-- Producto 4: Cubetazo Balboa Ice -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/40 smooth-transition">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Cervezas Locales
-                                </span>
-                                <span class="text-xs font-semibold text-white tracking-wide font-mono">$24.00 <span class="text-[9px] text-[#a39e95]">USD</span></span>
-                            </div>
-                            <h3 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">Cubetazo Balboa Ice (6 Unidades)</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Cubeta repleta de hielo con 6 botellas de Balboa Ice, la cerveza local ultra filtrada a temperaturas bajo cero para refrescar tu mesa.
-                            </p>
-                        </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/10 flex justify-between items-center">
-                            <span class="text-[10px] text-green-500 font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span> En Stock
-                            </span>
-                            <button onclick="orderItemFromTable('Cubetazo Balboa Ice (6 botellas)', 24.00, 15)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                Solicitar a Mesa
-                            </button>
+                </div>
+
+                <!-- MINI CONSOLA DE PEDIDOS ACTIVOS EN MESA -->
+                <div class="mt-12 bg-[#101010] border-l-4 border-[var(--vive-red)] p-6">
+                    <h3 class="title-urban text-xl text-white mb-4">Tracking de tus pedidos</h3>
+                    <div id="bartender-queue-container" class="space-y-2">
+                        <!-- Pedidos en tiempo real irán aquí -->
+                        <div class="flex justify-between items-center bg-[#151515] px-4 py-3 opacity-50 border border-[#333]">
+                            <span class="text-[#9ca3af] font-medium text-sm">No has pedido nada todavía en esta vuelta.</span>
                         </div>
                     </div>
-
-                    <!-- Producto 5: Cubetazo Golden Light -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/40 smooth-transition">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Cervezas Light
-                                </span>
-                                <span class="text-xs font-semibold text-white tracking-wide font-mono">$20.00 <span class="text-[9px] text-[#a39e95]">USD</span></span>
-                            </div>
-                            <h3 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">Cubetazo Atlas Golden Light</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Cerveza rubia altamente refrescante, ligera y suave. Presentada en balde de aluminio tradicional con abundante hielo de montaña.
-                            </p>
-                        </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/10 flex justify-between items-center">
-                            <span class="text-[10px] text-green-500 font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span> En Stock
-                            </span>
-                            <button onclick="orderItemFromTable('Cubetazo Atlas Golden Light', 20.00, 10)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                Solicitar a Mesa
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Producto 6: Shots "Fuego del Casco" -->
-                    <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/40 smooth-transition">
-                        <div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-2.5 py-1">
-                                    Chupetería Fuego
-                                </span>
-                                <span class="text-xs font-semibold text-white tracking-wide font-mono">$15.00 <span class="text-[9px] text-[#a39e95]">USD</span></span>
-                            </div>
-                            <h3 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">Set de Shots "Fuego del Casco" (4x)</h3>
-                            <p class="text-[#a39e95] text-xs font-light leading-relaxed mt-3">
-                                Una bandeja de chupitos elaborados con Seco macerado con canela y ají chombo dulce local. Un golpe cítrico y picante al final que despierta los sentidos.
-                            </p>
-                        </div>
-                        <div class="mt-8 pt-4 border-t border-[#c5a880]/10 flex justify-between items-center">
-                            <span class="text-[10px] text-green-500 font-medium tracking-wider uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span> En Stock
-                            </span>
-                            <button onclick="orderItemFromTable('Set Shots Fuego del Casco', 15.00, 12)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                Solicitar a Mesa
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
         </section>
 
-        <!-- PESTAÑA 2: FIDELIZACIÓN / CLUB VIVE -->
+        <!-- PESTAÑA 3: FIDELIZACIÓN (VIVE CREW) -->
         <section id="tab-fidelizacion" class="tab-content hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                <!-- Columna Izquierda: Tarjeta de Identidad y Beneficios (Estilo Editorial image_2d751f.jpg) -->
-                <div class="lg:col-span-5 flex flex-col gap-8">
-                    
-                    <!-- Tarjeta Miembro VIP -->
-                    <div class="bg-[#141211] p-8 border-l-4 border-[#c5a880] gold-border relative overflow-hidden flex flex-col justify-between h-80">
-                        <div class="absolute right-0 bottom-0 opacity-[0.03] text-9xl serif-italic font-bold -mr-8 -mb-12 pointer-events-none text-[#c5a880]">V</div>
+                <!-- Columna Izquierda: Tarjeta VIVE CREW -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <div class="bg-[#151515] p-6 street-border relative overflow-hidden flex flex-col justify-between h-72">
+                        <!-- Graphic background -->
+                        <div class="absolute -right-10 -bottom-10 opacity-5 text-9xl title-urban font-bold text-[var(--vive-red)]">V</div>
                         
-                        <div class="flex justify-between items-start">
+                        <div class="flex justify-between items-start relative z-10">
                             <div>
-                                <span class="text-[9px] text-[#c5a880] uppercase tracking-[0.3em] block mb-1">Tarjeta de Miembro</span>
-                                <h3 class="serif-title text-2xl text-white">VIVE CASCO <span class="serif-italic font-light text-[#c5a880]">Elite</span></h3>
+                                <span class="sticker-badge text-[9px] mb-2">VIVE CREW MEMBER</span>
+                                <h3 class="title-urban text-2xl text-white">ID: V-PARKER-99</h3>
                             </div>
-                            <span class="text-[10px] tracking-widest text-[#a39e95] font-mono">ID: #4092-VIP</span>
                         </div>
 
-                        <!-- Estado de Cuenta y Rango -->
-                        <div>
+                        <div class="relative z-10">
                             <div class="flex justify-between items-baseline mb-2">
-                                <span class="text-xs text-[#a39e95] font-light">Estatus de Miembro: <strong class="text-white font-medium">Lounge Member</strong></span>
-                                <span class="text-[#c5a880] text-xs font-mono">90% completado</span>
+                                <span class="text-xs text-[#9ca3af] font-bold uppercase">Nivel: <strong class="text-white">Rumbero Frecuente</strong></span>
                             </div>
-                            <!-- Barra de progreso ultra delgada y fina para verse profesional -->
-                            <div class="w-full bg-[#1c1817] h-[2px] mb-2">
-                                <div class="bg-[#c5a880] h-[2px] w-[90%] smooth-transition"></div>
+                            <div class="w-full bg-[#333] h-2 mb-2 rounded-full overflow-hidden">
+                                <div class="bg-[var(--vive-red)] h-full w-[90%] fast-transition"></div>
                             </div>
-                            <div class="flex justify-between text-[9px] text-[#a39e95] font-light">
-                                <span>450 PTS ACUMULADOS</span>
-                                <span>Faltan 50 PTS para "Socio Platinum"</span>
-                            </div>
-                        </div>
-
-                        <!-- Estadísticas Rápidas -->
-                        <div class="grid grid-cols-2 gap-4 border-t border-[#c5a880]/15 pt-5 text-center md:text-left">
-                            <div>
-                                <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-0.5">Visitas Registradas</span>
-                                <span class="text-lg font-semibold text-white tracking-wide" id="stats-tickets-bought">6</span>
-                            </div>
-                            <div>
-                                <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-0.5">Ahorro en Comisiones</span>
-                                <span class="text-lg font-semibold text-white tracking-wide">$36.00 <span class="text-xs text-[#a39e95] font-normal">USD</span></span>
+                            <div class="flex justify-between text-[10px] text-[#9ca3af] font-bold">
+                                <span>450 PTS</span>
+                                <span>Pa'l próximo nivel: 50 PTS</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Cuadro de la alianza sin intermediarios (Sustentabilidad) -->
-                    <div class="bg-[#141211] gold-border p-8">
-                        <h4 class="serif-title text-xl text-white mb-4">El Compromiso VIVE</h4>
-                        <div class="flex flex-col gap-4 text-xs text-[#a39e95] leading-relaxed font-light">
-                            <p>
-                                <strong>Transparencia Absoluta:</strong> A diferencia de las ticketeras internacionales, no cobramos comisiones de intermediarios abusivas de 10% o 15% por cada entrada de tu noche.
-                            </p>
-                            <p>
-                                <strong>Fidelización Reutilizable:</strong> El 100% de tus aportaciones de membresía se transforman en créditos que puedes utilizar directamente en las barras de los bares afiliados para pagar tragos o cocktails.
-                            </p>
-                        </div>
+                    <div class="bg-[var(--vive-fuchsia)] text-black p-6 street-border font-bold text-sm">
+                        <i class="fa-solid fa-bullhorn mb-2 text-xl block"></i>
+                        Tu plata aquí rinde. Cero % a las ticketeras gringas. Lo que pagas, te lo devolvemos en puntos pa' gastar en la barra. De Casco, pa'l Casco.
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Tienda de Beneficios y Mixología -->
-                <div class="lg:col-span-7 flex flex-col gap-10">
+                <!-- Columna Derecha: Canjear Puntos -->
+                <div class="lg:col-span-7 flex flex-col gap-6">
                     <div>
-                        <h2 class="serif-title text-3xl text-white">Beneficios del Club</h2>
-                        <p class="text-xs text-[#a39e95] mt-1 font-light">Canjea tus puntos acumulados por experiencias de coctelería y acceso preferencial instantáneo.</p>
+                        <h2 class="title-urban text-3xl text-white">Quema tus puntos</h2>
+                        <p class="text-sm text-[#9ca3af] font-medium mt-1">Canjea tus PTS acumulados directo en taquilla o barra.</p>
                     </div>
 
-                    <!-- Grid de Productos de Canje -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="rewards-store-container">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         
-                        <!-- Premio 1 -->
-                        <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/30 smooth-transition">
+                        <!-- Promo 1 -->
+                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-red)] fast-transition group">
                             <div>
-                                <div class="text-[#c5a880] text-xl mb-4">
-                                    <i class="fa-solid fa-wine-glass-and-straw"></i>
-                                </div>
-                                <h4 class="serif-title text-lg text-white group-hover:text-[#c5a880] smooth-transition">Cocktail de Autor de Bienvenida</h4>
-                                <p class="text-[11px] text-[#a39e95] font-light leading-relaxed mt-2">
-                                    Canjea un trago de nuestra carta premium directo en la barra del mesón.
-                                </p>
+                                <h4 class="title-urban text-lg text-white group-hover:text-[var(--vive-red)]">Fast Pass (Sin Filas)</h4>
+                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Corta la fila en la entrada como un rey. Aplica pa' cualquier evento.</p>
                             </div>
-                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#c5a880]/10">
-                                <span class="text-xs font-semibold text-[#c5a880] font-mono">150 PTS</span>
-                                <button onclick="redeemReward('Cocktail de Autor de Bienvenida', 150)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                    Canjear
+                            <div class="flex justify-between items-center mt-5 pt-3 border-t border-[#2a2a2a]">
+                                <span class="text-sm font-bold text-[var(--promo-yellow)] title-urban">150 PTS</span>
+                                <button onclick="redeemReward('Fast Pass Sin Filas', 150)" class="bg-[#2a2a2a] hover:bg-[var(--vive-red)] text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">
+                                    Canjear Promo
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Premio 2 -->
-                        <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/30 smooth-transition">
+                        <!-- Promo 2 -->
+                        <div class="bg-[#151515] border border-[#333] p-5 flex flex-col justify-between hover:border-[var(--vive-red)] fast-transition group">
                             <div>
-                                <div class="text-[#c5a880] text-xl mb-4">
-                                    <i class="fa-solid fa-bolt"></i>
-                                </div>
-                                <h4 class="serif-title text-lg text-white group-hover:text-[#c5a880] smooth-transition">Acceso Fast Pass (Sin Filas)</h4>
-                                <p class="text-[11px] text-[#a39e95] font-light leading-relaxed mt-2">
-                                    Evita las colas de acceso regular en cualquiera de las discotecas socias de Vive Casco.
-                                </p>
+                                <h4 class="title-urban text-lg text-white group-hover:text-[var(--vive-red)]">2 Shots de Fuego</h4>
+                                <p class="text-xs text-[#9ca3af] font-medium mt-2">Dos chupitos de Seco Fuego en la barra para prender la noche.</p>
                             </div>
-                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#c5a880]/10">
-                                <span class="text-xs font-semibold text-[#c5a880] font-mono">200 PTS</span>
-                                <button onclick="redeemReward('Acceso Fast Pass', 200)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                    Canjear
+                            <div class="flex justify-between items-center mt-5 pt-3 border-t border-[#2a2a2a]">
+                                <span class="text-sm font-bold text-[var(--promo-yellow)] title-urban">200 PTS</span>
+                                <button onclick="redeemReward('2 Shots de Fuego', 200)" class="bg-[#2a2a2a] hover:bg-[var(--vive-red)] text-white text-[10px] font-bold py-2 px-3 uppercase fast-transition">
+                                    Canjear Promo
                                 </button>
-                            </div>
-                        </div>
-
-                        <!-- Premio 3 -->
-                        <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between group hover:border-[#c5a880]/30 smooth-transition">
-                            <div>
-                                <div class="text-[#c5a880] text-xl mb-4">
-                                    <i class="fa-solid fa-whiskey-glass"></i>
-                                </div>
-                                <h4 class="serif-title text-lg text-white group-hover:text-[#c5a880] smooth-transition">Botella de Destilado Especial</h4>
-                                <p class="text-[11px] text-[#a39e95] font-light leading-relaxed mt-2">
-                                    Una botella premium de selección de reserva de nuestra carta para tu mesa.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#c5a880]/10">
-                                <span class="text-xs font-semibold text-[#c5a880] font-mono">350 PTS</span>
-                                <button onclick="redeemReward('Botella de Destilado Especial', 350)" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase smooth-transition">
-                                    Canjear
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Premio 4 (Bloqueado) -->
-                        <div class="bg-[#141211] gold-border p-6 flex flex-col justify-between opacity-50 cursor-not-allowed">
-                            <div>
-                                <div class="text-[#a39e95] text-xl mb-4">
-                                    <i class="fa-solid fa-hotel"></i>
-                                </div>
-                                <h4 class="serif-title text-lg text-white">Socio Platinum Lounge Upgrade</h4>
-                                <p class="text-[11px] text-[#a39e95] font-light leading-relaxed mt-2">
-                                    Acceso exclusivo de por vida a los balcones privados VIP de Casco Viejo.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#c5a880]/10">
-                                <span class="text-xs font-semibold text-[#a39e95] font-mono">500 PTS</span>
-                                <button disabled class="bg-[#1c1817] text-[#a39e95] text-[10px] font-semibold py-2.5 px-4 tracking-widest uppercase cursor-not-allowed">
-                                    Bloqueado
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- CONCIERGE INTERACTIVO / PERSONALIZACIÓN DE COCTELERÍA -->
-                    <div class="bg-[#141211] gold-border p-8 relative overflow-hidden">
-                        <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 border-b border-[#c5a880]/15 pb-6">
-                            <div>
-                                <h3 class="serif-title text-xl text-white">Mesa Concierge: Mixología de Mesa</h3>
-                                <p class="text-xs text-[#a39e95] mt-1 font-light">Sugiere tus preferencias aromáticas preferidas a los bartenders por 50 Créditos de Reserva.</p>
-                            </div>
-                            <span class="inline-block bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] text-[9px] font-mono tracking-widest uppercase px-3 py-1 self-start">
-                                CONEXIÓN DIRECTA BAR
-                            </span>
-                        </div>
-
-                        <!-- Selector sofisticado de notas botánicas (No cyberpunk, sino sofisticado) -->
-                        <div class="mb-6">
-                            <span class="text-[9px] text-[#a39e95] uppercase tracking-widest block mb-3 font-medium">Selecciona el perfil de sabor para tu mesa:</span>
-                            <div class="flex flex-wrap gap-3" id="flavor-tags-container">
-                                <button onclick="selectFlavor(this)" class="px-4 py-2 text-xs border border-[#c5a880]/20 hover:border-[#c5a880] text-[#a39e95] hover:text-white smooth-transition">Ahumado & Roble</button>
-                                <button onclick="selectFlavor(this)" class="px-4 py-2 text-xs border border-[#c5a880]/20 hover:border-[#c5a880] text-[#a39e95] hover:text-white smooth-transition">Cítrico & Fresco</button>
-                                <button onclick="selectFlavor(this)" class="px-4 py-2 text-xs border border-[#c5a880]/20 hover:border-[#c5a880] text-[#a39e95] hover:text-white smooth-transition">Especiado & Exótico</button>
-                                <button onclick="selectFlavor(this)" class="px-4 py-2 text-xs border border-[#c5a880]/20 hover:border-[#c5a880] text-[#a39e95] hover:text-white smooth-transition">Floral & Herbal</button>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col md:flex-row gap-4 mb-6">
-                            <input id="mixology-notes-input" type="text" placeholder="Instrucciones especiales para el Bartender (Ej: Base de Gin seco, bajo en azúcar)..." class="flex-grow bg-[#0c0a09] border border-[#c5a880]/20 px-4 py-3 text-xs focus:outline-none focus:border-[#c5a880] text-white">
-                            <button onclick="requestMixology()" class="bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold px-6 py-3.5 tracking-widest uppercase smooth-transition">
-                                Enviar Orden
-                            </button>
-                        </div>
-
-                        <!-- Cola de Servicio en Tiempo Real -->
-                        <div>
-                            <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-2">Comandas de Mesa en Curso</span>
-                            <div class="flex flex-col gap-2 text-xs" id="bartender-queue-container">
-                                <div class="flex justify-between items-center bg-[#0c0a09] px-4 py-3 border-l-2 border-[#c5a880]">
-                                    <span class="text-white font-light">Mesa 4 — Infusiones Herbales con Cardamomo</span>
-                                    <span class="text-[#c5a880] text-[10px] font-mono tracking-widest uppercase">EN PREPARACIÓN</span>
-                                </div>
-                                <div class="flex justify-between items-center bg-[#0c0a09] px-4 py-3 opacity-60">
-                                    <span class="text-[#a39e95] font-light">Terraza 1 — Scotch Ahumado y notas de Naranja deshidratada</span>
-                                    <span class="text-[#a39e95] text-[10px] font-mono tracking-widest uppercase">CONFIRMADO</span>
-                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
-        <!-- PESTAÑA 3: MIS RESERVAS / TICKETS COMPRADOS -->
+        <!-- PESTAÑA 4: MIS PASES (Tickets) -->
         <section id="tab-tickets" class="tab-content hidden">
-            <div class="mb-10">
-                <h2 class="serif-title text-3xl text-white">Tus Reservas Privadas</h2>
-                <p class="text-xs text-[#a39e95] mt-1 font-light">Presenta estos pases elegantes digitales en la recepción o directamente con tu mayordomo de sala.</p>
+            <div class="mb-8">
+                <h2 class="title-urban text-3xl text-white">Tu Billetera de Pases</h2>
+                <p class="text-sm text-[#9ca3af] font-medium mt-1">Muestra este QR en la taquilla, cero impresiones.</p>
             </div>
 
-            <!-- Empty state con diseño minimalista -->
-            <div id="no-tickets-message" class="text-center py-20 bg-[#141211] gold-border max-w-2xl mx-auto flex flex-col items-center">
-                <div class="text-[#c5a880] text-3xl mb-4 font-light">
-                    <i class="fa-solid fa-receipt"></i>
-                </div>
-                <p class="text-[#a39e95] font-light text-sm max-w-sm mb-6">Actualmente no posees reservas de accesos activos para los próximos eventos.</p>
-                <button onclick="switchTab('eventos', document.querySelectorAll('.nav-btn')[0])" class="text-[#c5a880] hover:text-[#dfba8a] text-xs uppercase tracking-widest font-semibold border-b border-[#c5a880]/30 pb-1">Ver catálogo de eventos →</button>
+            <!-- Empty State -->
+            <div id="no-tickets-message" class="text-center py-20 bg-[#151515] street-border max-w-2xl mx-auto">
+                <div class="text-[#333] text-5xl mb-4"><i class="fa-solid fa-ticket-simple"></i></div>
+                <p class="text-[#9ca3af] font-bold text-sm mb-4">Tas liso de tickets. No hay nada pa' hoy.</p>
+                <button onclick="switchTab('eventos', document.querySelectorAll('.nav-btn')[0])" class="text-[var(--vive-red)] hover:text-white font-bold text-xs uppercase underline">Mira la cartelera</button>
             </div>
 
-            <div id="tickets-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Se inyectarán dinámicamente con JavaScript -->
+            <div id="tickets-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Inyectado vía JS -->
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER PREMIUM / EDITORIAL -->
-    <footer class="border-t border-[#c5a880]/15 py-12 px-6 bg-[#0c0a09] mt-20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-            <div class="flex flex-col gap-2">
-                <span class="serif-title text-xl text-white tracking-[0.15em]">VIVE CASCO</span>
-                <span class="text-xs text-[#a39e95] font-light max-w-md">Una plataforma directa y exclusiva de reservas de ocio nocturno y servicios de mesa, libre de cargos de comisiones de intermediarios.</span>
+    <!-- FOOTER -->
+    <footer class="border-t-2 border-[#2a2a2a] py-8 px-6 bg-[#0a0a0a] mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <span class="title-urban text-xl text-white">VIVE CASCO</span>
+                <p class="text-xs text-[#9ca3af] font-medium mt-1">La rumba panameña, conectada.</p>
             </div>
-            <div class="text-[10px] tracking-[0.2em] font-mono text-[#a39e95] uppercase flex flex-wrap justify-center gap-6">
-                <span>EST: 2026</span>
-                <span>PANAMÁ CITY</span>
-                <span>LICENCIA DE MIEMBRO NÓMADA</span>
+            <div class="text-[10px] font-bold text-[#555] uppercase">
+                CASCO VIEJO • PANAMÁ CITY • 2026
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE CHECKOUT PREMIUM (Minimalista y refinado) -->
-    <div id="purchase-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-[#141211] gold-border w-full max-w-md p-8 shadow-2xl relative">
-            
-            <!-- Cerrar -->
-            <button onclick="closePurchaseModal()" class="absolute top-6 right-6 text-[#a39e95] hover:text-white smooth-transition">
-                <i class="fa-solid fa-xmark text-sm"></i>
+    <!-- MODAL DE CHECKOUT -->
+    <div id="purchase-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#151515] street-border w-full max-w-sm p-6 relative">
+            <button onclick="closePurchaseModal()" class="absolute top-4 right-4 text-[#9ca3af] hover:text-white bg-[#2a2a2a] w-8 h-8 rounded flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <span class="text-[9px] text-[#c5a880] uppercase tracking-[0.3em] block mb-2 font-semibold">Reserva VIP Concierge</span>
-            <h3 class="serif-title text-2xl text-white mb-6 border-b border-[#c5a880]/15 pb-4">Detalle de tu Invitación</h3>
+            <span class="sticker-badge red text-[9px] mb-3">TAQUILLA</span>
+            <h3 class="title-urban text-2xl text-white mb-6 border-b border-[#333] pb-3">Confirma tu pase</h3>
 
-            <div class="flex flex-col gap-5 mb-8">
+            <div class="space-y-4 mb-6">
                 <div>
-                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Experiencia Seleccionada</span>
-                    <span class="text-base text-white font-medium" id="modal-event-title">---</span>
+                    <span class="text-[10px] text-[#9ca3af] font-bold uppercase block">Pa' qué es:</span>
+                    <span class="text-sm text-white font-bold" id="modal-event-title">---</span>
                 </div>
                 <div class="flex justify-between">
                     <div>
-                        <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Precio Unitario</span>
-                        <span class="text-sm text-white font-medium tracking-wide" id="modal-event-price">$0.00</span>
+                        <span class="text-[10px] text-[#9ca3af] font-bold uppercase block">Precio:</span>
+                        <span class="text-base text-white title-urban" id="modal-event-price">$0.00</span>
                     </div>
-                    <div>
-                        <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Ptos Acumulados</span>
-                        <span class="text-sm text-[#c5a880] font-medium tracking-wide" id="modal-event-reward">+0 Ptos</span>
+                    <div class="text-right">
+                        <span class="text-[10px] text-[#9ca3af] font-bold uppercase block">Ganas:</span>
+                        <span class="text-base text-[var(--vive-red)] title-urban" id="modal-event-reward">+0 Ptos</span>
                     </div>
                 </div>
 
-                <!-- Selección de Cantidad -->
                 <div>
-                    <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-2">Cantidad de Accesos</span>
-                    <div class="flex items-center gap-4 bg-[#0c0a09] border border-[#c5a880]/20 p-2 w-max">
-                        <button onclick="updateQty(-1)" class="w-8 h-8 bg-[#141211] hover:bg-[#1c1817] text-[#a39e95] hover:text-white flex items-center justify-center text-sm font-semibold smooth-transition">-</button>
-                        <span class="text-sm font-semibold w-8 text-center" id="purchase-qty">1</span>
-                        <button onclick="updateQty(1)" class="w-8 h-8 bg-[#141211] hover:bg-[#1c1817] text-[#a39e95] hover:text-white flex items-center justify-center text-sm font-semibold smooth-transition">+</button>
-                    </div>
-                </div>
-
-                <div class="border-t border-[#c5a880]/15 pt-5 mt-4 flex justify-between items-end">
-                    <div>
-                        <span class="text-[8px] text-[#a39e95] uppercase tracking-widest block mb-1">Monto Total Estimado</span>
-                        <span class="text-2xl font-semibold text-[#c5a880] tracking-wide" id="modal-total-price">$0.00</span>
+                    <span class="text-[10px] text-[#9ca3af] font-bold uppercase block mb-1">¿Cuántos pases?</span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQty(-1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-red)]">-</button>
+                        <span class="w-10 text-center text-lg font-bold text-white title-urban" id="purchase-qty">1</span>
+                        <button onclick="updateQty(1)" class="w-10 h-10 bg-[#2a2a2a] text-white font-bold title-urban text-lg hover:bg-[var(--vive-red)]">+</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Botón procesar pago -->
-            <button onclick="processSimulatedPayment()" class="w-full bg-[#c5a880] hover:bg-[#dfba8a] text-black text-xs font-semibold py-4 px-4 tracking-[0.2em] uppercase smooth-transition">
-                Confirmar y Reservar
+            <div class="border-t border-[#333] pt-4 mb-4 flex justify-between items-end">
+                <span class="text-[10px] text-[#9ca3af] font-bold uppercase">Total a pagar:</span>
+                <span class="text-2xl text-white title-urban" id="modal-total-price">$0.00</span>
+            </div>
+
+            <button onclick="processSimulatedPayment()" class="w-full btn-urban py-4 text-lg">
+                PAGAR PASE
             </button>
-            <p class="text-[8px] text-[#a39e95] text-center mt-4 uppercase tracking-[0.2em] font-mono">Simulador de Transacción • Prototipo de Fidelidad</p>
+            <p class="text-[9px] text-[#555] text-center mt-3 font-bold uppercase">Esto es un demo / Prototipo 2026</p>
         </div>
     </div>
 
-    <!-- SCRIPT DE INTERACCIÓN, CAMBIO DE PESTAÑAS Y SISTEMA DE FIDELIZACIÓN -->
+    <!-- SCRIPTS DE INTERACCIÓN -->
     <script>
-
-        // Sonidos sutiles y elegantes mediante Web Audio API (Onda de baja frecuencia, pulso cálido)
+        // API Audio Simple para feedback de UI
         let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
-        // Click suave tipo hotel bell
-        function playSoundClick() {
-            initAudio();
-            if (!audioCtx) return;
-
+        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        
+        function playSfx(type) {
+            initAudio(); if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime); // Mi5 suave
-            osc.frequency.exponentialRampToValueAtTime(329.63, audioCtx.currentTime + 0.15);
-
-            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
-        }
-
-        // Sonido de confirmación arpegiado
-        function playSoundSuccess() {
-            initAudio();
-            if (!audioCtx) return;
-
-            const now = audioCtx.currentTime;
-            const notes = [392.00, 493.88, 587.33, 783.99]; // Sol Mayor Arpeggio
-
-            notes.forEach((freq, idx) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, now + (idx * 0.06));
-
-                gain.gain.setValueAtTime(0.03, now + (idx * 0.06));
-                gain.gain.linearRampToValueAtTime(0.001, now + (idx * 0.06) + 0.2);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start(now + (idx * 0.06));
-                osc.stop(now + (idx * 0.06) + 0.2);
-            });
-        }
-
-        // Sonido bajo sutil para el timbre del mesero
-        function playSoundBell() {
-            initAudio();
-            if (!audioCtx) return;
-
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(880.00, audioCtx.currentTime); // La5 puro y cristalino
-            osc.frequency.exponentialRampToValueAtTime(440.00, audioCtx.currentTime + 0.4);
-
-            gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.4);
-        }
-
-
-        // Cambio de Pestañas
-        function switchTab(tabId, btn) {
-            playSoundClick();
-
-            // Ocultar todas las pestañas
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
-                tab.classList.remove('block');
-            });
-
-            // Mostrar pestaña seleccionada
-            const targetTab = document.getElementById(`tab-${tabId}`);
-            targetTab.classList.remove('hidden');
-            targetTab.classList.add('block');
-
-            // Actualizar botones del menú de navegación
-            document.querySelectorAll('.nav-btn').forEach(button => {
-                button.classList.remove('active', 'text-white');
-                button.classList.add('text-[#a39e95]');
-            });
-
-            btn.classList.add('active', 'text-white');
-            btn.classList.remove('text-[#a39e95]');
-        }
-
-
-        // Toast Sutil
-        function showToast(message, category = "CONCIERGE VIVE", isSuccess = true) {
-            const toast = document.getElementById('system-toast');
-            const categoryEl = document.getElementById('toast-category');
-            const messageEl = document.getElementById('toast-message');
-            const iconEl = document.getElementById('toast-icon');
-
-            categoryEl.innerText = category;
-            messageEl.innerText = message;
-
-            if (isSuccess) {
-                iconEl.innerHTML = '<i class="fa-solid fa-circle-check text-[#c5a880]"></i>';
-            } else {
-                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-500"></i>';
-            }
-
-            // Animación de entrada
-            toast.classList.remove('translate-y-12', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            // Auto-ocultar
-            setTimeout(() => {
-                toast.classList.add('translate-y-12', 'opacity-0');
-                toast.classList.remove('translate-y-0', 'opacity-100');
-            }, 5000);
-        }
-
-
-        // ESTADO GLOBAL DEL PROTOTIPO
-        let currentPoints = 450;
-        let ticketsBoughtCount = 6;
-        let ticketsList = [];
-        let selectedFlavorText = "";
-        let isTableUnlocked = false;
-        let currentTableId = "";
-
-        let selectedEvent = {
-            title: "",
-            price: 0,
-            reward: 0,
-            qty: 1
-        };
-
-        // GESTIÓN DE ACCESO A MESA (CÓDIGO: mesa04)
-        function unlockTableMenu() {
-            const codeInput = document.getElementById('table-code-input').value.trim().toLowerCase();
+            osc.connect(gain); gain.connect(audioCtx.destination);
             
-            if (codeInput === 'mesa04') {
-                playSoundSuccess();
-                isTableUnlocked = true;
-                currentTableId = "Mesa 04";
-                
-                // Transición elegante de UI
+            if (type === 'click') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(660, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            }
+        }
+
+        // Cambio Pestañas
+        function switchTab(tabId, btn) {
+            playSfx('click');
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active', 'text-[var(--vive-red)]', 'text-white');
+                b.classList.add('text-[#9ca3af]');
+            });
+            btn.classList.add('active', 'text-[var(--vive-red)]');
+            btn.classList.remove('text-[#9ca3af]');
+        }
+
+        // Toasts
+        function showToast(msg, cat="AVISO") {
+            const toast = document.getElementById('system-toast');
+            document.getElementById('toast-category').innerText = cat;
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('translate-y-12', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-12', 'opacity-0'), 4000);
+        }
+
+        // Variables Globales
+        let currentPoints = 450;
+        let ticketsList = [];
+        let selectedEvent = { title: "", price: 0, reward: 0, qty: 1 };
+        let isTableUnlocked = false;
+
+        // Gestión de Puntos
+        function updatePointsUI(addPts) {
+            currentPoints += addPts;
+            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-[var(--vive-red)]">PTS</span>`;
+            const bar = document.querySelector('.w-full.bg-\\[\\#333\\] .bg-\\[var\\(--vive-red\\)\\]');
+            if(bar) bar.style.width = Math.min((currentPoints/500)*100, 100) + '%';
+        }
+
+        // Mesa interactiva
+        function unlockTableMenu() {
+            if(document.getElementById('table-code-input').value.toLowerCase() === 'mesa04') {
+                playSfx('success');
                 document.getElementById('menu-gatekeeper').classList.add('hidden');
                 document.getElementById('menu-catalog-container').classList.remove('hidden');
-                document.getElementById('active-table-id').innerText = currentTableId;
-                
-                showToast("Acceso Concedido: Conexión segura establecida con Mesa 04.", "BARRA DIGITAL");
+                showToast("¡Listo! Tas en la Mesa 04.", "CONECTADO");
             } else {
-                playSoundClick();
-                showToast("Código de mesa incorrecto. Utiliza 'mesa04' para el prototipo.", "ERROR DE ACCESO", false);
+                playSfx('click'); showToast("Código incorrecto, pon mesa04 bro.", "ERROR");
             }
         }
 
         function lockTableMenu() {
-            playSoundClick();
-            isTableUnlocked = false;
-            currentTableId = "";
-            
-            // Revertir UI
+            playSfx('click');
             document.getElementById('menu-catalog-container').classList.add('hidden');
             document.getElementById('menu-gatekeeper').classList.remove('hidden');
             document.getElementById('table-code-input').value = "";
-            
-            showToast("Mesa desconectada de manera segura.", "BARRA DIGITAL");
         }
 
-        // Llamado de servicio de mesero (Llamar al salonero)
         function callWaiter() {
-            playSoundBell();
-            showToast("Solicitud enviada. Un salonero va en camino a la Mesa 04.", "CONCIERGE DE SERVICIO");
-            
-            // Registrar llamada en la cola del Bartender / Saloneros para simular el panel de back-end
-            const queueContainer = document.getElementById('bartender-queue-container');
-            const alertItem = document.createElement('div');
-            alertItem.className = "flex justify-between items-center bg-[#1c1817] px-4 py-3 border-l-2 border-[#c5a880] animate-pulse";
-            alertItem.innerHTML = `
-                <span class="text-[#c5a880] font-light"><i class="fa-solid fa-bell mr-2"></i> Licitación: Salonero solicitado en la Mesa 04</span>
-                <span class="text-[#c5a880] text-[10px] font-mono tracking-widest uppercase">ATENCIÓN REQUERIDA</span>
-            `;
-            queueContainer.insertBefore(alertItem, queueContainer.firstChild);
-
-            // Simular que el mesero llega y atiende el ticket pasados 10 segundos
-            setTimeout(() => {
-                alertItem.classList.remove('animate-pulse');
-                alertItem.className = "flex justify-between items-center bg-[#0c0a09] px-4 py-3 opacity-40";
-                alertItem.innerHTML = `
-                    <span class="text-[#a39e95] font-light line-through">Licitación: Salonero atendió la Mesa 04</span>
-                    <span class="text-[#a39e95] text-[10px] font-mono tracking-widest uppercase">RESUELTO</span>
-                `;
-            }, 10000);
+            playSfx('success');
+            showToast("Va un man para allá.", "MESERO AVISADO");
+            addQueueItem("Mesa 04 solicita Mesero", "EN CAMINO");
         }
 
-        // Hacer pedido directo de un trago de la mesa
-        function orderItemFromTable(itemName, price, pointsReward) {
-            playSoundSuccess();
-            
-            // Sumar puntos de lealtad (Simulando el cashback directo del 10% que devuelve la plataforma)
-            currentPoints += pointsReward;
-            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-white/70 ml-0.5">PTS</span>`;
-
-            // Actualizar estadísticas del club
-            const progressPct = Math.min((currentPoints / 500) * 100, 100);
-            const progressBar = document.querySelector('.w-full.bg-\\[\\#1c1817\\] .bg-\\[\\#c5a880\\]');
-            if (progressBar) progressBar.style.width = `${progressPct}%`;
-            
-            const progressLabel = document.querySelector('.text-\\[9px\\] .text-\\[\\#a39e95\\]');
-            if (progressLabel) progressLabel.innerText = `${currentPoints} PTS ACUMULADOS`;
-
-            // Inyectar el pedido en la cola del bartender
-            const queueContainer = document.getElementById('bartender-queue-container');
-            const orderItem = document.createElement('div');
-            orderItem.className = "flex justify-between items-center bg-[#0c0a09] px-4 py-3 border-l-2 border-[#c5a880] animate-pulse";
-            orderItem.innerHTML = `
-                <span class="text-white font-light">Mesa 04 — Solicitud de 1x ${itemName} ($${price.toFixed(2)})</span>
-                <span class="text-[#c5a880] text-[10px] font-mono tracking-widest uppercase">EN BARRA</span>
-            `;
-            queueContainer.insertBefore(orderItem, queueContainer.firstChild);
-
-            showToast(`Orden enviada: 1x ${itemName}. Se han acreditado +${pointsReward} Ptos de cashback.`, "ORDEN RECIBIDA");
-
-            // Simular estado de barra de "En preparación" a "Enviado a mesa"
-            setTimeout(() => {
-                orderItem.classList.remove('animate-pulse');
-                orderItem.innerHTML = `
-                    <span class="text-white font-light">Mesa 04 — 1x ${itemName} preparado</span>
-                    <span class="text-[#c5a880] text-[10px] font-mono tracking-widest uppercase">CAMINO A MESA</span>
-                `;
-                playSoundBell();
-                showToast(`El servicio de ${itemName} se está entregando en tu Mesa 04.`, "BEBIDA LISTA");
-            }, 6000);
+        function orderItemFromTable(name, price, pts) {
+            playSfx('success');
+            updatePointsUI(pts);
+            showToast(`Metiendo 1x ${name} a la cuenta. +${pts} PTS ganados.`, "PEDIDO LISTO");
+            addQueueItem(`1x ${name} para Mesa 04`, "PREPARANDO");
         }
 
+        function addQueueItem(text, status) {
+            const q = document.getElementById('bartender-queue-container');
+            if(q.innerHTML.includes("No has pedido nada")) q.innerHTML = "";
+            const div = document.createElement('div');
+            div.className = "flex justify-between items-center bg-[#151515] border-l-2 border-[var(--vive-red)] px-4 py-2 mt-2";
+            div.innerHTML = `<span class="text-white text-xs font-medium">${text}</span><span class="sticker-badge text-[8px]">${status}</span>`;
+            q.prepend(div);
+        }
 
-        // COMPRA DE ENTRADAS
-        function openPurchaseModal(eventTitle, price, pointsReward) {
-            playSoundClick();
-            selectedEvent = {
-                title: eventTitle,
-                price: price,
-                reward: pointsReward,
-                qty: 1
-            };
-
-            document.getElementById('modal-event-title').innerText = selectedEvent.title;
-            document.getElementById('modal-event-price').innerText = `$${selectedEvent.price.toFixed(2)} USD`;
-            document.getElementById('modal-event-reward').innerText = `+${selectedEvent.reward} Ptos`;
-            document.getElementById('purchase-qty').innerText = selectedEvent.qty;
-
+        // Compra Entradas
+        function openPurchaseModal(title, price, pts) {
+            playSfx('click');
+            selectedEvent = { title, price, reward: pts, qty: 1 };
+            document.getElementById('modal-event-title').innerText = title;
+            document.getElementById('modal-event-price').innerText = `$${price.toFixed(2)}`;
+            document.getElementById('modal-event-reward').innerText = `+${pts} Ptos`;
             updateTotalDisplay();
-
             document.getElementById('purchase-modal').classList.remove('hidden');
         }
 
         function closePurchaseModal() {
-            playSoundClick();
-            document.getElementById('purchase-modal').classList.add('hidden');
+            playSfx('click'); document.getElementById('purchase-modal').classList.add('hidden');
         }
 
-        function updateQty(delta) {
-            playSoundClick();
-            selectedEvent.qty += delta;
-            if (selectedEvent.qty < 1) selectedEvent.qty = 1;
-            document.getElementById('purchase-qty').innerText = selectedEvent.qty;
+        function updateQty(d) {
+            playSfx('click');
+            selectedEvent.qty = Math.max(1, selectedEvent.qty + d);
             updateTotalDisplay();
         }
 
         function updateTotalDisplay() {
-            const total = selectedEvent.price * selectedEvent.qty;
-            document.getElementById('modal-total-price').innerText = `$${total.toFixed(2)} USD`;
+            document.getElementById('purchase-qty').innerText = selectedEvent.qty;
+            document.getElementById('modal-total-price').innerText = `$${(selectedEvent.price * selectedEvent.qty).toFixed(2)}`;
         }
 
         function processSimulatedPayment() {
-            playSoundSuccess();
-
-            // Cerrar Modal
-            document.getElementById('purchase-modal').classList.add('hidden');
-
-            // Sumar puntos de lealtad
-            const pointsGained = selectedEvent.reward * selectedEvent.qty;
-            currentPoints += pointsGained;
-            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-white/70 ml-0.5">PTS</span>`;
-
-            // Actualizar Rango en UI
-            const progressPct = Math.min((currentPoints / 500) * 100, 100);
-            const progressBar = document.querySelector('.w-full.bg-\\[\\#1c1817\\] .bg-\\[\\#c5a880\\]');
-            if (progressBar) progressBar.style.width = `${progressPct}%`;
+            playSfx('success');
+            closePurchaseModal();
+            updatePointsUI(selectedEvent.reward * selectedEvent.qty);
             
-            const progressLabel = document.querySelector('.text-\\[9px\\] .text-\\[\\#a39e95\\]');
-            if (progressLabel) progressLabel.innerText = `${currentPoints} PTS ACUMULADOS`;
-
-            // Agregar a reservas activas
-            ticketsBoughtCount += selectedEvent.qty;
-            document.getElementById('stats-tickets-bought').innerText = ticketsBoughtCount;
-
-            const ticketId = `RES-${Math.floor(100000 + Math.random() * 900000)}`;
-            const newTicket = {
-                id: ticketId,
-                title: selectedEvent.title,
-                qty: selectedEvent.qty,
-                dateBought: new Date().toLocaleDateString('es-PA'),
-                type: 'ACCESO EXCLUSIVO VIP'
-            };
-            ticketsList.push(newTicket);
-
-            // Refrescar UI de mis reservas
-            updateTicketsUI();
-
-            showToast(`Confirmado: ${selectedEvent.qty}x ${selectedEvent.title}. ¡+${pointsGained} Puntos acreditados!`, "RESERVA EXITOSA");
+            ticketsList.push({
+                id: `TKT-${Math.floor(Math.random()*90000)}`,
+                title: selectedEvent.title, qty: selectedEvent.qty,
+                date: "Hoy"
+            });
+            renderTickets();
+            showToast(`¡Compraste ${selectedEvent.qty} pases! Revísalos en 'Mis Pases'.`, "TAQUILLA APROBADA");
         }
 
-        function updateTicketsUI() {
-            const container = document.getElementById('tickets-container');
-            const noTicketsMsg = document.getElementById('no-tickets-message');
-            const badge = document.getElementById('ticket-badge');
-
-            if (ticketsList.length === 0) {
-                noTicketsMsg.classList.remove('hidden');
-                badge.classList.add('hidden');
-                return;
-            }
-
-            noTicketsMsg.classList.add('hidden');
-            badge.classList.remove('hidden');
-
-            container.innerHTML = "";
-
-            ticketsList.forEach((ticket) => {
-                const card = document.createElement('div');
-                card.className = "bg-[#141211] gold-border p-8 flex flex-col md:flex-row justify-between items-center gap-8 group";
-                
-                card.innerHTML = `
-                    <div class="flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-[9px] text-[#c5a880] font-semibold uppercase tracking-widest">${ticket.type}</span>
-                            <span class="text-xs text-[#a39e95]">•</span>
-                            <span class="text-[10px] text-[#a39e95] tracking-wide">${ticket.dateBought}</span>
-                        </div>
-                        <h4 class="serif-title text-xl text-white group-hover:text-[#c5a880] smooth-transition">${ticket.title}</h4>
-                        <div class="text-[10px] text-[#a39e95] mt-4 flex gap-4">
-                            <span>Invitaciones: <strong class="text-white">${ticket.qty}x</strong></span>
-                            <span>Código: <strong class="text-white font-mono">${ticket.id}</strong></span>
-                        </div>
+        function renderTickets() {
+            const c = document.getElementById('tickets-container');
+            const msg = document.getElementById('no-tickets-message');
+            document.getElementById('ticket-badge').classList.remove('hidden');
+            msg.classList.add('hidden');
+            c.innerHTML = "";
+            
+            ticketsList.forEach(t => {
+                c.innerHTML += `
+                <div class="bg-[#151515] street-border p-5 flex items-center justify-between">
+                    <div>
+                        <span class="sticker-badge text-[8px] mb-2">QR ACTIVO</span>
+                        <h4 class="title-urban text-xl text-white">${t.title}</h4>
+                        <p class="text-xs text-[#9ca3af] mt-1">Válido para: <strong class="text-white">${t.qty} persona(s)</strong> | Cód: ${t.id}</p>
                     </div>
-                    <!-- Entrada Estilo Tarjeta Digital Minimalista -->
-                    <div class="flex flex-col items-center bg-[#0c0a09] p-4 gold-border w-28 h-28 justify-center">
-                        <!-- QR Code Minimalista para simular boletería física con estilo -->
-                        <svg class="w-16 h-16 opacity-80" viewBox="0 0 100 100">
-                            <path d="M 5 5 H 35 V 35 H 5 Z M 12 12 H 28 V 28 H 12 Z M 65 5 H 95 V 35 H 65 Z M 72 12 H 88 V 28 H 72 Z M 5 65 H 35 V 95 H 5 Z M 12 72 H 28 V 88 H 12 Z" fill="#c5a880"></path>
-                            <path d="M 45 5 H 55 V 15 H 45 Z M 45 25 H 55 V 45 H 45 Z M 55 45 H 65 V 55 H 55 Z M 65 55 H 95 V 65 H 65 Z" fill="#c5a880"></path>
-                            <path d="M 45 65 H 55 V 95 H 45 Z M 55 65 H 65 V 75 H 55 Z M 65 75 H 85 V 95 H 65 Z" fill="#c5a880"></path>
-                        </svg>
-                        <span class="text-[8px] text-[#c5a880] tracking-widest uppercase mt-2">Válido</span>
+                    <div class="bg-white p-2 w-16 h-16 flex items-center justify-center">
+                        <i class="fa-solid fa-qrcode text-3xl text-black"></i>
                     </div>
-                `;
-                container.appendChild(card);
+                </div>`;
             });
         }
 
-        // Sistema de Canje de Premios
-        function redeemReward(rewardName, pointCost) {
-            if (currentPoints < pointCost) {
-                playSoundClick();
-                showToast(`Créditos insuficientes. Requieres ${pointCost} Puntos para este canje.`, "NOTIFICACIÓN DE SERVICIO", false);
-                return;
+        // Rewards
+        function redeemReward(name, cost) {
+            if (currentPoints >= cost) {
+                playSfx('success');
+                updatePointsUI(-cost);
+                showToast(`Canjeaste: ${name}. Revisa tus pases.`, "PROMO ACTIVA");
+                ticketsList.push({ id: `RWD-${Math.floor(Math.random()*9000)}`, title: name, qty: 1 });
+                renderTickets();
+            } else {
+                playSfx('click'); showToast(`Te faltan puntos bro. Necesitas ${cost}.`, "ERROR");
             }
-
-            playSoundSuccess();
-
-            currentPoints -= pointCost;
-            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-white/70 ml-0.5">PTS</span>`;
-
-            // Actualizar Rango en UI
-            const progressPct = Math.min((currentPoints / 500) * 100, 100);
-            const progressBar = document.querySelector('.w-full.bg-\\[\\#1c1817\\] .bg-\\[\\#c5a880\\]');
-            if (progressBar) progressBar.style.width = `${progressPct}%`;
-            
-            const progressLabel = document.querySelector('.text-\\[9px\\] .text-\\[\\#a39e95\\]');
-            if (progressLabel) progressLabel.innerText = `${currentPoints} PTS ACUMULADOS`;
-
-            // Agregar beneficio canjeado a boletos activos
-            const voucherId = `VOU-${Math.floor(100000 + Math.random() * 900000)}`;
-            const newVoucher = {
-                id: voucherId,
-                title: `${rewardName} (Cupón Club VIVE)`,
-                qty: 1,
-                dateBought: new Date().toLocaleDateString('es-PA'),
-                type: 'CUPÓN DE BENEFICIO'
-            };
-            ticketsList.push(newVoucher);
-            updateTicketsUI();
-
-            showToast("¡Canjeado con éxito! Tu invitación se ha guardado en reservas.", "CUPÓN DISPONIBLE");
         }
-
-        // Selección de Flavor para barra
-        function selectFlavor(btn) {
-            playSoundClick();
-            // Deseleccionar los otros del contenedor
-            document.querySelectorAll('#flavor-tags-container button').forEach((button) => {
-                button.classList.remove('bg-[#c5a880]', 'text-black', 'border-[#c5a880]');
-                button.classList.add('text-[#a39e95]', 'border-[#c5a880]/20');
-            });
-
-            btn.classList.add('bg-[#c5a880]', 'text-black', 'border-[#c5a880]');
-            btn.classList.remove('text-[#a39e95]', 'border-[#c5a880]/20');
-            selectedFlavorText = btn.innerText;
-        }
-
-        // Solicitud de Mixología Personalizada a Bartenders
-        function requestMixology() {
-            const specNotes = document.getElementById('mixology-notes-input').value.trim();
-
-            if (!selectedFlavorText && !specNotes) {
-                playSoundClick();
-                showToast("Por favor, selecciona un perfil de sabor o escribe una instrucción.", "PETICIÓN INCOMPLETA", false);
-                return;
-            }
-
-            if (currentPoints < 50) {
-                playSoundClick();
-                showToast("Requieres al menos 50 Créditos de Reserva para solicitar mixología personalizada.", "SALDO INSUFICIENTE", false);
-                return;
-            }
-
-            playSoundSuccess();
-
-            currentPoints -= 50;
-            document.getElementById('user-points-display').innerHTML = `${currentPoints} <span class="text-[10px] text-white/70 ml-0.5">PTS</span>`;
-
-            // Agregar a comanda en curso
-            const queueContainer = document.getElementById('bartender-queue-container');
-            const newReq = document.createElement('div');
-            newReq.className = "flex justify-between items-center bg-[#0c0a09] px-4 py-3 border-l-2 border-[#c5a880] animate-pulse";
-            
-            const flavor = selectedFlavorText || "Cariño de la casa";
-            const note = specNotes ? `— ${specNotes}` : "";
-            newReq.innerHTML = `
-                <span class="text-white font-light">Mesa Privada — Notas de ${flavor} ${note}</span>
-                <span class="text-[#c5a880] text-[10px] font-mono tracking-widest uppercase">ENVIADO A BAR</span>
-            `;
-
-            queueContainer.insertBefore(newReq, queueContainer.firstChild);
-
-            // Limpiar inputs
-            document.getElementById('mixology-notes-input').value = "";
-            document.querySelectorAll('#flavor-tags-container button').forEach((button) => {
-                button.classList.remove('bg-[#c5a880]', 'text-black', 'border-[#c5a880]');
-                button.classList.add('text-[#a39e95]', 'border-[#c5a880]/20');
-            });
-            selectedFlavorText = "";
-
-            showToast("Tu orden de mixología de autor ha sido enviada al bartender.", "BAR DE COCTELES");
-
-            // Simulación de preparación completada en 6 segundos
-            setTimeout(() => {
-                newReq.classList.remove('animate-pulse');
-                newReq.className = "flex justify-between items-center bg-[#0c0a09] px-4 py-3 opacity-60";
-                newReq.innerHTML = `
-                    <span class="text-[#a39e95] font-light">Mesa Privada — Notas de ${flavor} ${note}</span>
-                    <span class="text-[#a39e95] text-[10px] font-mono tracking-widest uppercase">EN CAMINO A MESA</span>
-                `;
-                playSoundSuccess();
-                showToast("Tu cocktail personalizado está listo y va camino a tu mesa.", "BAR CONFIRMADO");
-            }, 6000);
-        }
-
-        // Saludo Inicial Sutil
-        setTimeout(() => {
-            showToast("Bienvenido de vuelta a VIVE CASCO. Reserva directa sin cargos extra.", "CONEXIÓN ESTABLE");
-        }, 1500);
-
     </script>
 </body>
 </html>
